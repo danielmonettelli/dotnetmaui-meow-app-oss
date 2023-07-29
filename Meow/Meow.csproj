@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -15,7 +15,7 @@
 		<ApplicationTitle>Meow</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.meow</ApplicationId>
+		<ApplicationId>com.danielmonettelli.meow</ApplicationId>
 		<ApplicationIdGuid>fcaa9a2c-51a1-4436-bb7f-f26e3a334d7d</ApplicationIdGuid>
 
 		<!-- Versions -->
