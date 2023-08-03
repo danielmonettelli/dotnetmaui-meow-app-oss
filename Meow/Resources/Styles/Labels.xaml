@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--#region Headline1-->
+
+    <!--#endregion-->
+
+
+    <!--#region Headline2-->
+
+    <!--#endregion-->
+
+
+    <!--#region Headline3-->
+
+    <!--#endregion-->
+
+
+    <!--#region Headline4-->
+
+    <!--#endregion-->
+
+
+    <!--#region Headline5-->
+
+    <!--#endregion-->
+
+
+    <!--#region Headline6-->
+    <Style
+        x:Key="TxtHeadline6_1"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#500" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light='#703edb', Dark='#ffffff'}" />
+    </Style>
+
+    <Style
+        x:Key="TxtHeadline6_2"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#500" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="#FF000000" />
+    </Style>
+    <!--#endregion-->
+
+
+    <!--#region Title-->
+
+    <!--#endregion-->
+
+
+    <!--#region Subtitle1-->
+    <Style
+        x:Key="TxtSubtitle1_1"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#400" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="#FFFFFFFF" />
+    </Style>
+
+    <Style
+        x:Key="TxtSubtitle1_2"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#600" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="#FFFFFFFF" />
+    </Style>
+    <!--#endregion-->
+
+
+    <!--#region Subtitle2-->
+
+    <!--#endregion-->
+
+
+    <!--#region Body1-->
+
+    <!--#endregion-->
+
+
+    <!--#region Body2-->
+
+    <!--#endregion-->
+
+
+    <!--#region Button-->
+
+    <!--#endregion-->
+
+
+    <!--#region Caption-->
+    <Style
+        x:Key="TxtCaption_1"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#400" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#FF000000" />
+    </Style>
+    <!--#endregion-->
+
+
+    <!--#region Overline-->
+    <Style
+        x:Key="TxtOverline_1"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#500" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="#FF6D1995" />
+    </Style>
+
+    <Style
+        x:Key="TxtOverline_2"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#600" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="#FF000000" />
+    </Style>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

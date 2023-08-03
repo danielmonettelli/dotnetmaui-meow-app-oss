@@ -3,12 +3,33 @@
     x:Class="Meow.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Meow"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:view="clr-namespace:Meow.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.Behaviors>
+        <mct:StatusBarBehavior
+            StatusBarColor="{AppThemeBinding Light='#6200ee',
+                                             Dark='#141414'}"
+            StatusBarStyle="Default" />
+    </Shell.Behaviors>
+
+    <TabBar>
+        <Tab
+            Title="Vote"
+            Icon="icon_vote.png">
+            <ShellContent ContentTemplate="{DataTemplate view:VotePage}" />
+        </Tab>
+        <Tab
+            Title="Breeds"
+            Icon="icon_breed.png">
+            <ShellContent ContentTemplate="{DataTemplate view:BreedsPage}" />
+        </Tab>
+        <Tab
+            Title="Favorites"
+            Icon="icon_favorite.png">
+            <ShellContent ContentTemplate="{DataTemplate view:FavoritePage}" />
+        </Tab>
+    </TabBar>
 
 </Shell>

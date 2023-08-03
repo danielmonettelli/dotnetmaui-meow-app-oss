@@ -1,0 +1,12 @@
+﻿global using CommunityToolkit.Maui;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using Material.Components.Maui.Extensions;
+global using Meow.Constants;
+global using Meow.Models;
+global using Meow.Services;
+global using Meow.ViewModels;
+global using Meow.Views;
+global using Microsoft.Extensions.Logging;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;

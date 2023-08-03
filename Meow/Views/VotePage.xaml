@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Meow.Views.VotePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:material="clr-namespace:IconPacks.Material;assembly=IconPacks.Material"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:page="clr-namespace:Meow.Views"
+    xmlns:viewmodel="clr-namespace:Meow.ViewModels"
+    ios:Page.UseSafeArea="true"
+    x:DataType="viewmodel:VoteViewModel">
+
+    <Shell.TitleView>
+        <Grid
+            Padding="0,0,16,0"
+            ColumnDefinitions="Auto, *, Auto">
+            <HorizontalStackLayout
+                Grid.Column="0"
+                Spacing="6">
+                <Image
+                    HeightRequest="24.5"
+                    Source="{AppThemeBinding Light='icon_brand_light.png',
+                                             Dark='icon_brand_dark.png'}"
+                    WidthRequest="27" />
+
+                <Label
+                    Style="{StaticResource TxtHeadline6_1}"
+                    Text="Meow"
+                    VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+
+            <Label
+                Grid.Column="2"
+                Style="{StaticResource TxtHeadline6_1}"
+                Text="Vote"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid
+        Padding="12,0"
+        RowDefinitions="20, *, 16, 48, 30">
+
+        <Border
+            x:Name="borderImage"
+            Grid.Row="1"
+            Shadow="{Shadow Brush='#121212',
+                            Offset='0,20',
+                            Radius='15',
+                            Opacity='0.3'}"
+            StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+            StrokeThickness="0">
+
+            <Image
+                Aspect="AspectFill"
+                Source="{Binding Cats[0].Url}" />
+        </Border>
+
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="Auto, *, Auto">
+            <mdc:Button
+                Grid.Column="0"
+                BackgroundColour="#56dd73"
+                Command="{Binding GetKittyCommand}"
+                FontSize="16"
+                ForegroundColor="White"
+                IconKind="{x:Static material:IconKind.ThumbUp}"
+                Shape="8"
+                Style="{DynamicResource FilledButtonStyle}"
+                Text="LOVE IT" />
+
+            <mdc:Button
+                Grid.Column="2"
+                BackgroundColour="#e15050"
+                Command="{Binding GetKittyCommand}"
+                FontSize="16"
+                ForegroundColor="White"
+                IconKind="{x:Static material:IconKind.ThumbDown}"
+                Shape="8"
+                Style="{DynamicResource FilledButtonStyle}"
+                Text="NOPE IT" />
+        </Grid>
+    </Grid>
+</ContentPage>
