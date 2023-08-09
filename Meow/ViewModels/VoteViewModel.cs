@@ -6,17 +6,19 @@ public partial class VoteViewModel : BaseViewModel
 
     public VoteViewModel(ICatService catService)
     {
+        Title = "Vote";
+
         _catService = catService;
 
-        InitializeKittyDataAsync();
+        InitializeDataAsync();
     }
 
     [ObservableProperty]
     List<Cat> cats;
 
-    public override async Task InitializeKittyDataAsync()
+    public override async Task InitializeDataAsync()
     {
-        await base.InitializeKittyDataAsync();
+        await base.InitializeDataAsync();
 
         Cats = await _catService.GetRandomKitty();
     }
@@ -26,4 +28,8 @@ public partial class VoteViewModel : BaseViewModel
     {
         Cats = await _catService.GetRandomKitty();
     }
+
+    [RelayCommand]
+    public async Task SaveFavoriteKittyAsync() =>
+        await _catService.AddFavoriteKitten(Cats.FirstOrDefault().Id);
 }

@@ -23,8 +23,12 @@ public static class MauiProgram
             });
 
         builder.Services.AddSingleton<ICatService, CatService>();
+
         builder.Services.AddSingleton<VoteViewModel>();
         builder.Services.AddTransient<VotePage>();
+
+        builder.Services.AddSingleton<FavoriteViewModel>();
+        builder.Services.AddTransient<FavoritePage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

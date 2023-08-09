@@ -33,7 +33,7 @@
             <Label
                 Grid.Column="2"
                 Style="{StaticResource TxtHeadline6_1}"
-                Text="Vote"
+                Text="{Binding Title}"
                 VerticalTextAlignment="Center" />
         </Grid>
     </Shell.TitleView>
@@ -43,7 +43,6 @@
         RowDefinitions="20, *, 16, 48, 30">
 
         <Border
-            x:Name="borderImage"
             Grid.Row="1"
             Shadow="{Shadow Brush='#121212',
                             Offset='0,20',
@@ -54,7 +53,11 @@
 
             <Image
                 Aspect="AspectFill"
-                Source="{Binding Cats[0].Url}" />
+                Source="{Binding Cats[0].Url}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SaveFavoriteKittyCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
         </Border>
 
         <Grid
