@@ -75,4 +75,22 @@ public class CatService : ICatService
 
         return default;
     }
+
+    public async Task<string> RemoveFavoriteKitten(string cat_id)
+    {
+        // Find the favorite cat response with the matching Image_id
+        var favoriteCatResponse = (await GetFavoriteKittens()).FirstOrDefault(x => x.Image_id == cat_id);
+
+        if (favoriteCatResponse != null)
+        {
+            var response = await _httpClient.DeleteAsync($"{APIConstants.FavoriteKittensEndPoint}/{favoriteCatResponse.Id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        return default;
+    }
 }

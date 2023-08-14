@@ -7,4 +7,5 @@ public interface ICatService
     Task<List<FavoriteCatResponse>> GetFavoriteKittens();
     Task<string> AddFavoriteKitten(string image_id);
     Task<string> DeleteFavoriteKitten(int favourite_id);
+    Task<string> RemoveFavoriteKitten(string cat_id);
 }
