@@ -2,8 +2,19 @@ namespace Meow.Views;
 
 public partial class BreedsPage : ContentPage
 {
-	public BreedsPage()
-	{
-		InitializeComponent();
-	}
+    private readonly BreedsViewModel vm = new(new CatService());
+
+    public BreedsPage()
+    {
+        InitializeComponent();
+
+        BindingContext = vm;
+    }
+
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await vm.InitializeDataAsync();
+    }
 }

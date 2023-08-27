@@ -13,11 +13,9 @@
     x:DataType="viewmodel:VoteViewModel">
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <mct:StateToBooleanConverter
-                x:Key="StateToBooleanConverter"
-                StateToCompare="Success" />
-        </ResourceDictionary>
+        <mct:StateToBooleanConverter
+            x:Key="StateToBooleanConverter"
+            StateToCompare="Success" />
     </ContentPage.Resources>
 
     <Shell.TitleView>

@@ -130,6 +130,12 @@ public class Breed
 
     [JsonPropertyName("reference_image_id")]
     public string Reference_image_id { get; set; }
+
+    [JsonPropertyName("cat_friendly")]
+    public int Cat_friendly { get; set; }
+
+    [JsonPropertyName("bidability")]
+    public int Bidability { get; set; }
 }
 
 public class Weight

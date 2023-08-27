@@ -93,4 +93,32 @@ public class CatService : ICatService
 
         return default;
     }
+
+    public async Task<List<Cat>> GetRandomKittensByBreed(string breed)
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"{APIConstants.CustomRandomKittiesByBreedEndPoints}&breed_ids={breed}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<List<Cat>>(content);
+        }
+
+        return default;
+    }
+
+    public async Task<List<Breed>> GetBreeds()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync(APIConstants.BreedsEndPoint);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<List<Breed>>(content);
+        }
+
+        return default;
+    }
 }
