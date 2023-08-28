@@ -40,8 +40,6 @@ public partial class BreedsViewModel : BaseViewModel
 
     public async Task SelectedBreedAsync(string id)
     {
-        KittensByBreed.Clear();
-
         KittensByBreed = await _catService.GetRandomKittensByBreed(id);
     }
 }
