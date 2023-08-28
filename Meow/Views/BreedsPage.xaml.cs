@@ -10,11 +10,4 @@ public partial class BreedsPage : ContentPage
 
         BindingContext = vm;
     }
-
-    protected async override void OnAppearing()
-    {
-        base.OnAppearing();
-
-        await vm.InitializeDataAsync();
-    }
 }
