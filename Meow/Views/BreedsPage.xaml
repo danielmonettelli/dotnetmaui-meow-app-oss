@@ -114,6 +114,10 @@
                 Style="{StaticResource TxtHeadline6_2}"
                 Text="{Binding SelectedBreed.Name}" />
 
+            <controls:CustomStringSplitterView
+                Grid.Row="6"
+                InputText="{Binding SelectedBreed.Temperament}" />
+
             <Label
                 Grid.Row="8"
                 Style="{StaticResource TxtCaption_1}"
