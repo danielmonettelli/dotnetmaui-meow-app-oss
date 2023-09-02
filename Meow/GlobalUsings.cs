@@ -2,6 +2,7 @@
 global using CommunityToolkit.Maui.Converters;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
+global using FFImageLoading.Maui;
 global using Material.Components.Maui.Extensions;
 global using Meow.Constants;
 global using Meow.Models;
