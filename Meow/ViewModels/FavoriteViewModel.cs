@@ -3,7 +3,7 @@
 public partial class FavoriteViewModel : BaseViewModel
 {
     [ObservableProperty]
-    List<FavoriteCatResponse> favoriteCats;
+    List<FavoriteCatResponse> favoriteCats = new();
 
     [ObservableProperty]
     FavoriteCatResponse selectedFavoriteCat = new();
