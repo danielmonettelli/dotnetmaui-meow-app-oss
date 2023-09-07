@@ -45,8 +45,6 @@ Then provide your email address and explain why you want to use this API key. Se
 
 ![thecatapi part 3](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_3.png)
 
-After getting the **API-KEY**, copy and paste it into the field designated as `THECAT_API_KEY_HERE`, and with that you are ready to run the application.
-
 Now, locate the `APIConstants` class, copy the **API-KEY** and paste it into the field designated as `THECAT_API_KEY_HERE`. With this, you are ready to run the application.
 
 ```csharp
