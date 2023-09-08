@@ -67,6 +67,7 @@
 		<PackageReference Include="FFImageLoadingCompat" Version="0.1.1" />
 		<PackageReference Include="FFImageLoadingCompat.Maui" Version="0.1.1" />
 		<PackageReference Include="FFImageLoadingCompat.Transformations" Version="0.1.1" />
+		<PackageReference Include="HorusStudio.Maui.Skeleton" Version="2.0.0" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
