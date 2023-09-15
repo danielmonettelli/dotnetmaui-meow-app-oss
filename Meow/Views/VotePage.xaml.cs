@@ -11,10 +11,10 @@ public partial class VotePage : ContentPage
         BindingContext = vm;
     }
 
-    protected async override void OnAppearing()
-    {
-        base.OnAppearing();
+    //protected async override void OnAppearing()
+    //{
+    //    base.OnAppearing();
 
-        await vm.InitializeDataAsync();
-    }
+    //    await vm.InitializeDataAsync();
+    //}
 }

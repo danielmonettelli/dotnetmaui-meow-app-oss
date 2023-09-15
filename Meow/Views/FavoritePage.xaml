@@ -58,62 +58,94 @@
         </Grid>
     </Shell.TitleView>
 
-    <CollectionView
-        Margin="12,20,12,12"
-        ItemsSource="{Binding FavoriteCats}"
-        SelectedItem="{Binding SelectedFavoriteCat}"
-        SelectionChangedCommand="{Binding DeleteFavoriteKittenCommand}"
-        SelectionMode="Single">
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout
-                HorizontalItemSpacing="16"
-                Orientation="Vertical"
-                Span="2"
-                VerticalItemSpacing="16" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:FavoriteCatResponse">
-                <Border
-                    HeightRequest="160"
-                    StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
-                    StrokeThickness="0"
-                    WidthRequest="160">
-                    <Grid
-                        ColumnDefinitions="*,*,*,*,*"
-                        RowDefinitions="*,*,*,*,*">
-                        <ffImageLoading:CachedImage
-                            Grid.RowSpan="5"
-                            Grid.ColumnSpan="5"
-                            Aspect="AspectFill"
-                            LoadingPlaceholder="icon_brand_bg.png"
-                            Source="{Binding ImageCat.Url}" />
+    <Grid RowDefinitions="*">
+        <CollectionView
+            Grid.Row="0"
+            Margin="12,20,12,12"
+            ItemsSource="{Binding FavoriteCats}"
+            SelectedItem="{Binding SelectedFavoriteCat}"
+            SelectionChangedCommand="{Binding DeleteFavoriteKittenCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="16"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="16" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:FavoriteCatResponse">
+                    <Border
+                        HeightRequest="160"
+                        StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+                        StrokeThickness="0"
+                        WidthRequest="160">
+                        <Grid
+                            ColumnDefinitions="*,*,*,*,*"
+                            RowDefinitions="*,*,*,*,*">
+                            <ffImageLoading:CachedImage
+                                Grid.RowSpan="5"
+                                Grid.ColumnSpan="5"
+                                Aspect="AspectFill"
+                                LoadingPlaceholder="icon_brand_bg.png"
+                                Source="{Binding ImageCat.Url}" />
 
-                        <Border
-                            Grid.Row="0"
-                            Grid.Column="4"
-                            BackgroundColor="#121212"
-                            Opacity="0.4"
-                            StrokeShape="{RoundRectangle CornerRadius='0,0,16,0'}"
-                            StrokeThickness="0" />
-                        <Image
-                            Grid.Row="0"
-                            Grid.Column="4"
-                            HorizontalOptions="Center"
-                            Scale="0.6"
-                            Source="icon_heart_solid.png"
-                            VerticalOptions="Center" />
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        <CollectionView.EmptyView>
-            <ContentView>
-                <StackLayout
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand">
-                    <Label Text="You don't have favorite kitties on your list, meow!" />
-                </StackLayout>
-            </ContentView>
-        </CollectionView.EmptyView>
-    </CollectionView>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                BackgroundColor="#121212"
+                                Opacity="0.4"
+                                StrokeShape="{RoundRectangle CornerRadius='0,0,16,0'}"
+                                StrokeThickness="0" />
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                HorizontalOptions="Center"
+                                Scale="0.6"
+                                Source="icon_heart_solid.png"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <Label Text="You don't have favorite kitties on your list, meow!" />
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <BoxView
+            Grid.Row="0"
+            IsVisible="{Binding IsBusy}"
+            Color="{AppThemeBinding Light='White',
+                                    Dark='Black'}" />
+
+        <VerticalStackLayout
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsBusy}"
+            Spacing="10"
+            VerticalOptions="CenterAndExpand">
+            <ActivityIndicator
+                Grid.Row="0"
+                HeightRequest="50"
+                IsRunning="{Binding IsBusy}"
+                WidthRequest="50"
+                Color="{AppThemeBinding Light='#552fa8',
+                                        Dark='#a183e1'}" />
+
+            <Label
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource TxtSubtitle1_1}"
+                Text="Loading"
+                TextColor="{AppThemeBinding Light='#552fa8',
+                                            Dark='#a183e1'}" />
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>

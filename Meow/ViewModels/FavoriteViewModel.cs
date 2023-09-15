@@ -21,9 +21,13 @@ public partial class FavoriteViewModel : BaseViewModel
 
     public async override Task InitializeDataAsync()
     {
+        IsBusy = true;
+
         await base.InitializeDataAsync();
 
         FavoriteCats = await _catService.GetFavoriteKittens();
+
+        IsBusy = false;
     }
 
     [RelayCommand]

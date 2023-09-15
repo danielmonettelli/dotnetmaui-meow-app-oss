@@ -24,20 +24,28 @@ public partial class VoteViewModel : BaseViewModel
 
     public override async Task InitializeDataAsync()
     {
+        IsBusy = true;
+
         await base.InitializeDataAsync();
 
         ImageHeart = "icon_heart_outline.png";
         LayoutState = LayoutState.None;
 
         Cats = await _catService.GetRandomKitty();
+
+        IsBusy = false;
     }
 
     [RelayCommand]
     public async Task GetKittyAsync()
     {
+        IsBusy = true;
+
         ImageHeart = "icon_heart_outline.png";
 
         Cats = await _catService.GetRandomKitty();
+
+        IsBusy = false;
     }
 
     [RelayCommand]

@@ -29,6 +29,8 @@ public partial class BreedsViewModel : BaseViewModel
 
     public async override Task InitializeDataAsync()
     {
+        IsBusy = true;
+
         await base.InitializeDataAsync();
 
         Breeds = await _catService.GetBreeds();
@@ -36,6 +38,8 @@ public partial class BreedsViewModel : BaseViewModel
         SelectedBreed = Breeds.FirstOrDefault();
 
         KittensByBreed = await _catService.GetRandomKittensByBreed(SelectedBreed.Id);
+
+        IsBusy = false;
     }
 
     public async Task SelectedBreedAsync(string id)
