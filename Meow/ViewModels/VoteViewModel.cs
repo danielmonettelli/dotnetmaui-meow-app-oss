@@ -22,48 +22,38 @@ public partial class VoteViewModel : BaseViewModel
     [ObservableProperty]
     List<Cat> cats;
 
-    public override async Task InitializeDataAsync()
+    public async Task InitializeDataAsync()
     {
-        IsBusy = true;
-
-        await base.InitializeDataAsync();
-
         ImageHeart = "icon_heart_outline.png";
         LayoutState = LayoutState.None;
 
         Cats = await _catService.GetRandomKitty();
-
-        IsBusy = false;
     }
 
     [RelayCommand]
     public async Task GetKittyAsync()
     {
-        IsBusy = true;
-
-        ImageHeart = "icon_heart_outline.png";
-
-        Cats = await _catService.GetRandomKitty();
-
-        IsBusy = false;
+        await InitializeDataAsync();
     }
 
     [RelayCommand]
     public async Task ManageFavoriteKittenAsync()
     {
-        switch (LayoutState)
+        if (LayoutState == LayoutState.None)
         {
-            case LayoutState.None:
-                ImageHeart = "icon_heart_solid.png";
-                LayoutState = LayoutState.Success;
-                await _catService.AddFavoriteKitten(Cats.FirstOrDefault().Id);
-                break;
-
-            default:
-                ImageHeart = "icon_heart_outline.png";
-                LayoutState = LayoutState.None;
-                await _catService.RemoveFavoriteKitten(Cats.FirstOrDefault().Id);
-                break;
+            IsBusy = true;
+            await _catService.AddFavoriteKitten(Cats.FirstOrDefault().Id);
+            ImageHeart = "icon_heart_solid.png";
+            LayoutState = LayoutState.Success;
+            IsBusy = false;
+        }
+        else
+        {
+            IsBusy = true;
+            await _catService.RemoveFavoriteKitten(Cats.FirstOrDefault().Id);
+            ImageHeart = "icon_heart_outline.png";
+            LayoutState = LayoutState.None;
+            IsBusy = false;
         }
     }
 }

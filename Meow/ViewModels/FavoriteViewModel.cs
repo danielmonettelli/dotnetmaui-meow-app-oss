@@ -19,11 +19,9 @@ public partial class FavoriteViewModel : BaseViewModel
         InitializeDataAsync();
     }
 
-    public async override Task InitializeDataAsync()
+    public async Task InitializeDataAsync()
     {
         IsBusy = true;
-
-        await base.InitializeDataAsync();
 
         FavoriteCats = await _catService.GetFavoriteKittens();
 

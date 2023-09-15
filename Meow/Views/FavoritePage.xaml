@@ -131,7 +131,6 @@
             Spacing="10"
             VerticalOptions="CenterAndExpand">
             <ActivityIndicator
-                Grid.Row="0"
                 HeightRequest="50"
                 IsRunning="{Binding IsBusy}"
                 WidthRequest="50"

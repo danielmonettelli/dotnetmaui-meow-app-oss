@@ -27,11 +27,9 @@ public partial class BreedsViewModel : BaseViewModel
         InitializeDataAsync();
     }
 
-    public async override Task InitializeDataAsync()
+    public async Task InitializeDataAsync()
     {
         IsBusy = true;
-
-        await base.InitializeDataAsync();
 
         Breeds = await _catService.GetBreeds();
 

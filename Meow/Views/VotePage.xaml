@@ -3,6 +3,7 @@
     x:Class="Meow.Views.VotePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Meow.Converters"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:material="clr-namespace:IconPacks.Material;assembly=IconPacks.Material"
@@ -14,6 +15,8 @@
     x:DataType="viewmodel:VoteViewModel">
 
     <ContentPage.Resources>
+        <converter:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+
         <mct:StateToBooleanConverter
             x:Key="StateToBooleanConverter"
             StateToCompare="Success" />
@@ -89,8 +92,18 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="Center"
+                    IsVisible="{Binding IsBusy, Converter={StaticResource InvertBooleanConverter}}"
                     Source="{Binding ImageHeart}"
                     VerticalOptions="Center" />
+
+                <ActivityIndicator
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HeightRequest="30"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    WidthRequest="30"
+                    Color="#cfbaff" />
             </Grid>
 
         </Border>
