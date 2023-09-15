@@ -28,6 +28,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<VoteViewModel>();
         builder.Services.AddTransient<VotePage>();
 
+        builder.Services.AddSingleton<BreedsViewModel>();
+        builder.Services.AddTransient<BreedsPage>();
+
         builder.Services.AddSingleton<FavoriteViewModel>();
         builder.Services.AddTransient<FavoritePage>();
 
