@@ -55,20 +55,19 @@ public class CustomStringSplitterView : ContentView
                     VerticalTextAlignment = TextAlignment.Center
 
                 };
-                label.SetAppThemeColor(Label.TextColorProperty, Color.FromArgb("#6d1995"), Color.FromArgb("#a183e1"));
+                label.SetAppThemeColor(Label.TextColorProperty, Color.FromArgb("#703EDB"), Color.FromArgb("#9F79F1"));
 
                 Border border = new()
                 {
                     Content = label,
                     Padding = new Thickness(8, 6, 8, 6),
-                    Background = Colors.Transparent,
                     StrokeShape = new RoundRectangle
                     {
                         CornerRadius = new CornerRadius(7, 7, 7, 7)
                     },
-                    StrokeThickness = 1,
+                    StrokeThickness = 0,
                 };
-                border.SetAppThemeColor(Border.StrokeProperty, Color.FromArgb("#6d1995"), Color.FromArgb("#a183e1"));
+                border.SetAppThemeColor(Border.BackgroundColorProperty, Color.FromArgb("#F4F0FC"), Color.FromArgb("#1C0F37"));
 
                 itemsLayout.Children.Add(border);
             }

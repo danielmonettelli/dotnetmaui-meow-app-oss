@@ -135,14 +135,14 @@
                 IsRunning="{Binding IsBusy}"
                 WidthRequest="50"
                 Color="{AppThemeBinding Light='#552fa8',
-                                        Dark='#a183e1'}" />
+                                        Dark='#9F79F1'}" />
 
             <Label
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource TxtSubtitle1_1}"
                 Text="Loading"
                 TextColor="{AppThemeBinding Light='#552fa8',
-                                            Dark='#a183e1'}" />
+                                            Dark='#9F79F1'}" />
         </VerticalStackLayout>
 
     </Grid>
