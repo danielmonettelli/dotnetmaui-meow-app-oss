@@ -59,6 +59,7 @@
 	  <None Remove="Resources\Images\icon_heart_outline.svg" />
 	  <None Remove="Resources\Images\icon_heart_solid.svg" />
 	  <None Remove="Resources\Images\icon_vote.svg" />
+	  <None Remove="Resources\Raw\animation_hearts.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,10 +71,14 @@
 		<PackageReference Include="HorusStudio.Maui.Skeleton" Version="2.0.0" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.83" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\Labels.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ReusableComponents\TitleViewReusable.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BreedsPage.xaml">

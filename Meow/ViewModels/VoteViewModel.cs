@@ -8,6 +8,9 @@ public partial class VoteViewModel : BaseViewModel
     [ObservableProperty]
     string imageHeart = "icon_heart_outline.png";
 
+    [ObservableProperty]
+    private bool isAnimation;
+
     private readonly ICatService _catService;
 
     public VoteViewModel(ICatService catService)
@@ -46,6 +49,9 @@ public partial class VoteViewModel : BaseViewModel
             ImageHeart = "icon_heart_solid.png";
             LayoutState = LayoutState.Success;
             IsBusy = false;
+
+            Progress = TimeSpan.Zero;
+            IsAnimation = true;
         }
         else
         {

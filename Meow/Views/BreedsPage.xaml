@@ -7,6 +7,7 @@
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:Meow.Models"
+    xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:viewModel="clr-namespace:Meow.ViewModels"
     ios:Page.UseSafeArea="true"
     x:DataType="viewModel:BreedsViewModel">
@@ -33,30 +34,7 @@
     </ContentPage.Resources>
 
     <Shell.TitleView>
-        <Grid
-            Padding="0,0,16,0"
-            ColumnDefinitions="Auto, *, Auto">
-            <HorizontalStackLayout
-                Grid.Column="0"
-                Spacing="6">
-                <Image
-                    HeightRequest="24.5"
-                    Source="{AppThemeBinding Light='icon_brand_light.png',
-                                             Dark='icon_brand_dark.png'}"
-                    WidthRequest="27" />
-
-                <Label
-                    Style="{StaticResource TxtHeadline6_1}"
-                    Text="Meow"
-                    VerticalTextAlignment="Center" />
-            </HorizontalStackLayout>
-
-            <Label
-                Grid.Column="2"
-                Style="{StaticResource TxtHeadline6_1}"
-                Text="{Binding Title}"
-                VerticalTextAlignment="Center" />
-        </Grid>
+        <reusablecomponent:TitleViewReusable />
     </Shell.TitleView>
 
     <Grid RowDefinitions="*">
