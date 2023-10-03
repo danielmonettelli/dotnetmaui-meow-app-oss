@@ -3,10 +3,10 @@
 public partial class VoteViewModel : BaseViewModel
 {
     [ObservableProperty]
-    LayoutState layoutState = LayoutState.None;
+    private LayoutState layoutState = LayoutState.None;
 
     [ObservableProperty]
-    string imageHeart = "icon_heart_outline.png";
+    private string imageHeart = "icon_heart_outline.png";
 
     [ObservableProperty]
     private bool isAnimation;
@@ -42,24 +42,31 @@ public partial class VoteViewModel : BaseViewModel
     [RelayCommand]
     public async Task ManageFavoriteKittenAsync()
     {
-        if (LayoutState == LayoutState.None)
+        IsBusy = true;
+
+        bool isAddingFavorite = (LayoutState == LayoutState.None);
+
+        await ToggleFavoriteKittenAsync(isAddingFavorite);
+
+        IsBusy = false;
+    }
+
+    private async Task ToggleFavoriteKittenAsync(bool isAdding)
+    {
+        if (isAdding)
         {
-            IsBusy = true;
             await _catService.AddFavoriteKitten(Cats.FirstOrDefault().Id);
             ImageHeart = "icon_heart_solid.png";
             LayoutState = LayoutState.Success;
-            IsBusy = false;
 
             Progress = TimeSpan.Zero;
             IsAnimation = true;
         }
         else
         {
-            IsBusy = true;
             await _catService.RemoveFavoriteKitten(Cats.FirstOrDefault().Id);
             ImageHeart = "icon_heart_outline.png";
             LayoutState = LayoutState.None;
-            IsBusy = false;
         }
     }
 }

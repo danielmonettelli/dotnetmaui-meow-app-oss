@@ -3,10 +3,10 @@
 public partial class FavoriteViewModel : BaseViewModel
 {
     [ObservableProperty]
-    List<FavoriteCatResponse> favoriteCats = new();
+    private List<FavoriteCatResponse> favoriteCats = new();
 
     [ObservableProperty]
-    FavoriteCatResponse selectedFavoriteCat = new();
+    private FavoriteCatResponse selectedFavoriteCat = new();
 
     private readonly ICatService _catService;
 
@@ -21,19 +21,28 @@ public partial class FavoriteViewModel : BaseViewModel
 
     public async Task InitializeDataAsync()
     {
-        IsBusy = true;
-
-        FavoriteCats = await _catService.GetFavoriteKittens();
-
-        IsBusy = false;
+        await PerformOperationAsync(async () =>
+        {
+            FavoriteCats = await _catService.GetFavoriteKittens();
+        });
     }
 
     [RelayCommand]
     public async Task DeleteFavoriteKittenAsync()
     {
-        await _catService
-              .DeleteFavoriteKitten(SelectedFavoriteCat.Id);
+        await PerformOperationAsync(async () =>
+        {
+            await _catService.DeleteFavoriteKitten(SelectedFavoriteCat.Id);
+            FavoriteCats = await _catService.GetFavoriteKittens();
+        });
+    }
 
-        await InitializeDataAsync();
+    private async Task PerformOperationAsync(Func<Task> operation)
+    {
+        IsBusy = true;
+
+        await operation.Invoke();
+
+        IsBusy = false;
     }
 }
