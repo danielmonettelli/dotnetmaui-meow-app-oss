@@ -29,7 +29,9 @@
 
 [![Main Cover](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/meow_main_cover.png)](#Main-Cover)
 
-Discover a lovely mobile app to explore and enjoy adorable kitties.
+## Description
+
+In this app, users can look at cute photos of different kittens. 🐈
 
 ## Instructions
 
@@ -82,6 +84,34 @@ public static class APIConstants
 | [<img src="https://avatars.githubusercontent.com/u/25359161?v=4" width="150">](https://github.com/BryanOroxon) |
 :---------------------------------------------:|
 | **Bryan Oroxón** |
+
+To contribute:
+
+1. Fork the repo using the fork button on GitHub.
+
+2. Clone the repo by clicking the green "Code" button and copying the HTTPS link: `https://github.com/danielmonettelli/dotnetmaui-meow-app-oss.git`.
+
+3. To create a new branch, start by navigating to your cloned copy of `dotnetmaui-meow-app-oss`. 
+
+4. To create a new branch off of the main branch, run `git checkout main`.
+
+5. To create your new branch, run `git branch <your branch>` and then `git checkout <your branch>` to switch to "new-branch".
+
+6. You can now make your contributions here.
+
+7. If you are done editing, you can then stage your changed files by running `git add name_of_your_file` or run `git add .` to stage all files that you have modified.
+
+8. To commit your contributions, run `git commit -m "message"`, where message explains the changes made.
+
+9. Run `git push origin <your branch>` to push your changes.
+
+10. Lastly, create a pull request by going to your forked repo and clicking "Compare & pull request", then clicking "Create pull request".
+
+11. See if your changes were added! 
+
+## MIT License
+
+Copyright (c) Daniel Monttelli
 
 ## Open Source ❤
 
