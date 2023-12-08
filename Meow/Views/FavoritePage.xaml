@@ -3,6 +3,7 @@
     x:Class="Meow.Views.FavoritePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Meow.Controls"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:Meow.Models"
@@ -68,7 +69,7 @@
                                 LoadingPlaceholder="icon_brand_bg.png"
                                 Source="{Binding ImageCat.Url}" />
 
-                            <Border
+                            <controls:MyBorder
                                 Grid.Row="0"
                                 Grid.Column="4"
                                 BackgroundColor="#121212"

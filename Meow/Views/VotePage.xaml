@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Meow.Converters"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
+    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    xmlns:material="clr-namespace:IconPacks.Material;assembly=IconPacks.Material"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:page="clr-namespace:Meow.Views"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
@@ -96,22 +96,24 @@
             ColumnDefinitions="Auto, *, Auto">
             <mdc:Button
                 Grid.Column="0"
-                BackgroundColour="#56dd73"
+                BackgroundColor="#56dd73"
                 Command="{Binding GetKittyCommand}"
+                FontColor="White"
                 FontSize="16"
-                ForegroundColor="White"
-                IconKind="{x:Static material:IconKind.ThumbUp}"
+                IconColor="White"
+                IconData="{Static icon:Material.ThumbUp}"
                 Shape="8"
                 Style="{DynamicResource FilledButtonStyle}"
                 Text="LOVE IT" />
 
             <mdc:Button
                 Grid.Column="2"
-                BackgroundColour="#e15050"
+                BackgroundColor="#e15050"
                 Command="{Binding GetKittyCommand}"
+                FontColor="White"
                 FontSize="16"
-                ForegroundColor="White"
-                IconKind="{x:Static material:IconKind.ThumbDown}"
+                IconColor="White"
+                IconData="{Static icon:Material.ThumbDown}"
                 Shape="8"
                 Style="{DynamicResource FilledButtonStyle}"
                 Text="NOPE IT" />

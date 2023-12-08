@@ -57,7 +57,7 @@ public class CustomStringSplitterView : ContentView
                 };
                 label.SetAppThemeColor(Label.TextColorProperty, Color.FromArgb("#703EDB"), Color.FromArgb("#9F79F1"));
 
-                Border border = new()
+                MyBorder border = new()
                 {
                     Content = label,
                     Padding = new Thickness(8, 6, 8, 6),

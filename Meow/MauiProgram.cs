@@ -10,13 +10,7 @@ public static class MauiProgram
             .UseSkiaSharp()
             .UseFFImageLoading()
             .UseMauiCommunityToolkit()
-            .UseMaterialComponents(new List<string>
-            {
-                //generally, we needs add 6 types of font families
-                "Roboto-Regular.ttf",
-                "Roboto-Medium.ttf",
-                "Roboto-Bold.ttf"
-            })
+            .UseMaterialComponents()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("Roboto-Regular.ttf", "Roboto#400");

@@ -69,7 +69,7 @@
                 <CollectionView
                     Grid.Row="2"
                     ItemsSource="{Binding KittensByBreed}"
-                    SelectionMode="Single">
+                    SelectionMode="None">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
                             HorizontalItemSpacing="16"
@@ -77,7 +77,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Cat">
-                            <Border
+                            <controls:MyBorder
                                 BackgroundColor="{AppThemeBinding Light='#D9D9D9',
                                                                   Dark={StaticResource Gray600}}"
                                 StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
@@ -87,7 +87,7 @@
                                     LoadingPlaceholder="icon_brand_bg.png"
                                     Source="{Binding Url}"
                                     WidthRequest="215" />
-                            </Border>
+                            </controls:MyBorder>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -106,7 +106,7 @@
                     Style="{StaticResource TxtCaption_1}"
                     Text="{Binding SelectedBreed.Description}" />
 
-                <Border
+                <controls:MyBorder
                     Grid.Row="10"
                     Padding="10"
                     BackgroundColor="Transparent"
@@ -209,7 +209,7 @@
                                                                Dark='#252525'}"
                             Value="{Binding SelectedBreed.Dog_friendly}" />
                     </Grid>
-                </Border>
+                </controls:MyBorder>
             </Grid>
         </ScrollView>
 

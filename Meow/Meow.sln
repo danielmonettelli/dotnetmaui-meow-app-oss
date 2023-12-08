@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.31611.283
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meow", "Meow.csproj", "{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meow", "Meow.csproj", "{444B47F0-5256-4C29-BB2F-D8FA11CFE385}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEDE1B53-6ED1-4B02-8C15-8E73AC047983}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444B47F0-5256-4C29-BB2F-D8FA11CFE385}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+		SolutionGuid = {79A88B75-7CB0-4538-8361-E615E4E80EE3}
 	EndGlobalSection
 EndGlobal
