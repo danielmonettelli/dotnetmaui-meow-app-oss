@@ -44,7 +44,7 @@ jobs:
 
       - name: Build Android App
         run: |
-          dotnet build ./Meow -f net7.0-android
+          dotnet build ./Meow -f net8.0-android
 
   Build_iOS:
     runs-on: macos-13
@@ -72,7 +72,7 @@ jobs:
 
       - name: Build iOS App
         run: |
-          dotnet build ./Meow -f net7.0-ios
+          dotnet build ./Meow -f net8.0-ios
           
   Build_MacCatalyst:
     runs-on: macos-13
@@ -100,7 +100,7 @@ jobs:
 
       - name: Build macOS App
         run: |
-          dotnet build ./Meow -f net7.0-maccatalyst
+          dotnet build ./Meow -f net8.0-maccatalyst
 
   Build_Windows:
     runs-on: windows-latest
