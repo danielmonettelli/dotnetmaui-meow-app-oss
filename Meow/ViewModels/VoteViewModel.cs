@@ -36,6 +36,8 @@ public partial class VoteViewModel : BaseViewModel
     [RelayCommand]
     public async Task GetKittyAsync()
     {
+        IsAnimation = false;
+
         await InitializeDataAsync();
     }
 
