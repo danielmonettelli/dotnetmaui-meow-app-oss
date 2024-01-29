@@ -46,9 +46,9 @@
                     Grid.ColumnSpan="2"
                     Margin="-12"
                     Aspect="AspectFill"
-                    LoadingPlaceholder="icon_brand_bg.png"
-                    Source="{Binding Cats[0].Url}"
-                    TransformPlaceholders="True">
+                    FadeAnimationEnabled="False"
+                    IsEnabled="{Binding IsHidden, Converter={StaticResource InvertBooleanConverter}}"
+                    Source="{Binding Cats[0].Url}">
                     <ffImageLoading:CachedImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ManageFavoriteKittenCommand}" />
                     </ffImageLoading:CachedImage.GestureRecognizers>
@@ -89,6 +89,20 @@
                     Source="animation_hearts.json" />
             </Grid>
 
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="{AppThemeBinding Light='#D9D9D9',
+                                              Dark={StaticResource Gray600}}"
+            IsVisible="{Binding IsHidden}"
+            StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+            StrokeThickness="0">
+            <Grid RowDefinitions="10*,80*,10*">
+                <Image
+                    Grid.Row="1"
+                    Source="icon_brand_bg.png" />
+            </Grid>
         </Border>
 
         <Grid

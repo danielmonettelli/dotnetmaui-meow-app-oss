@@ -11,6 +11,9 @@ public partial class VoteViewModel : BaseViewModel
     [ObservableProperty]
     private bool isAnimation;
 
+    [ObservableProperty]
+    private bool isHidden;
+
     private readonly ICatService _catService;
 
     public VoteViewModel(ICatService catService)
@@ -30,7 +33,10 @@ public partial class VoteViewModel : BaseViewModel
         ImageHeart = "icon_heart_outline.png";
         LayoutState = LayoutState.None;
 
+        IsHidden = true;
         Cats = await _catService.GetRandomKitty();
+        await Task.Delay(1500);
+        IsHidden = false;
     }
 
     [RelayCommand]
@@ -66,6 +72,7 @@ public partial class VoteViewModel : BaseViewModel
         }
         else
         {
+            IsAnimation = false;
             await _catService.RemoveFavoriteKitten(Cats.FirstOrDefault().Id);
             ImageHeart = "icon_heart_outline.png";
             LayoutState = LayoutState.None;

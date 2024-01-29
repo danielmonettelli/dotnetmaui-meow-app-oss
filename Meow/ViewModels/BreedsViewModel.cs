@@ -11,6 +11,9 @@ public partial class BreedsViewModel : BaseViewModel
     [ObservableProperty]
     private List<Cat> kittensByBreed;
 
+    [ObservableProperty]
+    private bool isLoadBreeds;
+
     private readonly ICatService _catService;
 
     partial void OnSelectedBreedChanged(Breed value)
@@ -42,6 +45,10 @@ public partial class BreedsViewModel : BaseViewModel
 
     public async Task SelectedBreedAsync(string id)
     {
+        IsLoadBreeds = true;
+
         KittensByBreed = await _catService.GetRandomKittensByBreed(id);
+
+        IsLoadBreeds = false;
     }
 }
