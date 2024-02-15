@@ -33,19 +33,29 @@
 
 In this app, users can look at cute photos of different kittens. 🐈
 
+	
+## Table of Contents
+		
+* [Instructions](#instructions)
+* [Features](#features)
+* [Supported Platforms](#supported-platforms)
+* [Design tool](#design-tool)
+* [Publications](#publications)
+* [Contributors](#-contributors)
+
 ## Instructions
 
 Before running the application, it is necessary to obtain a **API-KEY**. To do this, visit the website https://thecatapi.com/ and click the `GET YOUR API KEY` button.
 
-![thecatapi part 1](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_1.png)
+![thecatapi part 1](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_1_updated.png)
 
-Then choose the **FREE** section and click `SIGNUP FOR FREE`.
+Then choose the **FREE** section and click `GET FREE ACCESS`.
 
-![thecatapi part 2](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_2.png)
+![thecatapi part 2](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_2_updated.png)
 
-Then provide your email address and explain why you want to use this API key. Select `A PERSONAL PROJECT` and finally, click on the `SIGNUP` button. You will receive an email with the **API-KEY** at the address you provided.
+Then provide your email address and explain why you want to use this API key. Select `A PERSONAL PROJECT` and finally, click on the `SUBMIT` button. You will receive an email with the **API-KEY** at the address you provided.
 
-![thecatapi part 3](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_3.png)
+![thecatapi part 3](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_3_updated.png)
 
 Now, locate the `APIConstants` class, copy the **API-KEY** and paste it into the field designated as `THECAT_API_KEY_HERE`. With this, you are ready to run the application.
 
@@ -60,6 +70,14 @@ public static class APIConstants
     // ...
 }
 ```
+
+## Features
+		
+* Cat image generation (Hi-res images)
+* Video Streams
+* Detailed breed information
+* Cat facts
+* Medical data
 
 ## Supported platforms
 
