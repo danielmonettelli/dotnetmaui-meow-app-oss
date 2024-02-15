@@ -37,6 +37,7 @@ In this app, users can look at cute photos of different kittens. 🐈
 ## Table of Contents
 		
 * [Instructions](#instructions)
+* [Features](#features)
 * [Supported Platforms](#supported-platforms)
 * [Design tool](#design-tool)
 * [Publications](#publications)
@@ -69,6 +70,14 @@ public static class APIConstants
     // ...
 }
 ```
+
+## Features
+		
+* Cat image generation (Hi-res images)
+* Video Streams
+* Detailed breed information
+* Cat facts
+* Medical data
 
 ## Supported platforms
 
