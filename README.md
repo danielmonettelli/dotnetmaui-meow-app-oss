@@ -33,6 +33,15 @@
 
 In this app, users can look at cute photos of different kittens. 🐈
 
+	
+## Table of Contents
+		
+* [Instructions](#instructions)
+* [Supported Platforms](#supported-platforms)
+* [Design tool](#design-tool)
+* [Publications](#publications)
+* [Contributors](#-contributors)
+
 ## Instructions
 
 Before running the application, it is necessary to obtain a **API-KEY**. To do this, visit the website https://thecatapi.com/ and click the `GET YOUR API KEY` button.
