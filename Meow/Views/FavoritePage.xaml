@@ -10,7 +10,8 @@
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:viewModel="clr-namespace:Meow.ViewModels"
     ios:Page.UseSafeArea="true"
-    x:DataType="viewModel:FavoriteViewModel">
+    x:DataType="viewModel:FavoriteViewModel"
+    SizeChanged="ContentPage_SizeChanged">
 
     <ContentPage.Resources>
         <Style TargetType="Border">
@@ -49,7 +50,7 @@
                 <GridItemsLayout
                     HorizontalItemSpacing="16"
                     Orientation="Vertical"
-                    Span="2"
+                    Span="{Binding Columns}"
                     VerticalItemSpacing="16" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>

@@ -8,6 +8,9 @@ public partial class FavoriteViewModel : BaseViewModel
     [ObservableProperty]
     private FavoriteCatResponse selectedFavoriteCat = new();
 
+    [ObservableProperty]
+    private int columns;
+
     private readonly ICatService _catService;
 
     public FavoriteViewModel(ICatService catService)

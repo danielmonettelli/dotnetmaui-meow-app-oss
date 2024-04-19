@@ -17,4 +17,9 @@ public partial class FavoritePage : ContentPage
 
         await vm.InitializeDataAsync();
     }
+
+    private void ContentPage_SizeChanged(object sender, EventArgs e)
+    {
+        vm.Columns = (int)(Width / 174);
+    }
 }
