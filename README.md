@@ -36,12 +36,18 @@ In this app, users can look at cute photos of different kittens. 🐈
 	
 ## Table of Contents
 		
-* [Instructions](#instructions)
-* [Features](#features)
-* [Supported Platforms](#supported-platforms)
-* [Design tool](#design-tool)
-* [Publications](#publications)
-* [Contributors](#-contributors)
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
+- [Instructions](#instructions)
+- [Features](#features)
+- [Supported platforms](#supported-platforms)
+- [Design tool](#design-tool)
+- [Publications](#publications)
+- [👥 Special collaborator](#-special-collaborator)
+- [👥 Contributors](#-contributors)
+- [Steps to contribute](#steps-to-contribute)
+- [MIT License](#mit-license)
+- [Open Source ❤](#open-source-)
 
 ## Instructions
 
@@ -97,13 +103,24 @@ public static class APIConstants
 
 - Coming soon...
 
-## 👥 Contributors
+## 👥 Special collaborator
 
 | [<img src="https://avatars.githubusercontent.com/u/25359161?v=4" width="150">](https://github.com/BryanOroxon) |
 :---------------------------------------------:|
 | **Bryan Oroxón** |
 
-To contribute:
+## 👥 Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Steps to contribute
 
 1. Fork the repo using the fork button on GitHub.
 
@@ -129,7 +146,7 @@ To contribute:
 
 ## MIT License
 
-Copyright (c) Daniel Monttelli
+Copyright (c) Daniel Monettelli
 
 ## Open Source ❤
 
