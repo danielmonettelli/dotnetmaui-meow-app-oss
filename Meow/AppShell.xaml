@@ -9,9 +9,10 @@
 
     <Shell.Behaviors>
         <mct:StatusBarBehavior
-            StatusBarColor="{AppThemeBinding Light='#6200ee',
+            StatusBarColor="{AppThemeBinding Light='White',
                                              Dark='#141414'}"
-            StatusBarStyle="Default" />
+            StatusBarStyle="{AppThemeBinding Light='DarkContent',
+                                             Dark='LightContent'}" />
     </Shell.Behaviors>
 
     <TabBar>

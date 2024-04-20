@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Meow.Converters"
+    xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
@@ -12,6 +13,9 @@
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:viewmodel="clr-namespace:Meow.ViewModels"
+    droid:NavigationBar.Color="{AppThemeBinding Light='White',
+                                                Dark='#141414'}"
+    droid:NavigationBar.Style="Default"
     ios:Page.UseSafeArea="true"
     x:DataType="viewmodel:VoteViewModel">
 
@@ -25,6 +29,8 @@
 
     <Grid
         Padding="12,0"
+        BackgroundColor="{AppThemeBinding Light='#F3F3F5',
+                                          Dark='Black'}"
         RowDefinitions="20, *, 16, 48, 30">
 
         <Border

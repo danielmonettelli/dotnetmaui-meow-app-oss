@@ -4,11 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Meow.Controls"
+    xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:Meow.Models"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:viewModel="clr-namespace:Meow.ViewModels"
+    droid:NavigationBar.Color="{AppThemeBinding Light='White',
+                                                Dark='#141414'}"
+    droid:NavigationBar.Style="Default"
     ios:Page.UseSafeArea="true"
     x:DataType="viewModel:FavoriteViewModel"
     SizeChanged="ContentPage_SizeChanged">
@@ -38,7 +42,10 @@
         <reusablecomponent:TitleViewReusable />
     </Shell.TitleView>
 
-    <Grid RowDefinitions="*">
+    <Grid
+        BackgroundColor="{AppThemeBinding Light='#F3F3F5',
+                                          Dark='Black'}"
+        RowDefinitions="*">
         <CollectionView
             Grid.Row="0"
             Margin="12,20,12,12"
@@ -102,7 +109,7 @@
         <BoxView
             Grid.Row="0"
             IsVisible="{Binding IsBusy}"
-            Color="{AppThemeBinding Light='White',
+            Color="{AppThemeBinding Light='#F3F3F5',
                                     Dark='Black'}" />
 
         <VerticalStackLayout

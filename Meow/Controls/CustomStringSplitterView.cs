@@ -67,7 +67,7 @@ public class CustomStringSplitterView : ContentView
                     },
                     StrokeThickness = 0,
                 };
-                border.SetAppThemeColor(Border.BackgroundColorProperty, Color.FromArgb("#F4F0FC"), Color.FromArgb("#1C0F37"));
+                border.SetAppThemeColor(Border.BackgroundColorProperty, Color.FromArgb("#FAFAFC"), Color.FromArgb("#1C0F37"));
 
                 itemsLayout.Children.Add(border);
             }
