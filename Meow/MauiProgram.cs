@@ -15,7 +15,7 @@ public static class MauiProgram
             {
                 fonts.AddFont("Roboto-Regular.ttf", "Roboto#400");
                 fonts.AddFont("Roboto-Medium.ttf", "Roboto#500");
-                fonts.AddFont("Roboto-Bold.ttf", "Roboto#600");
+                fonts.AddFont("Roboto-Bold.ttf", "Roboto#700");
             });
 
         builder.Services.AddSingleton<ICatService, CatService>();

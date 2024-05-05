@@ -4,19 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Meow.Converters"
-    xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
-    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:page="clr-namespace:Meow.Views"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:viewmodel="clr-namespace:Meow.ViewModels"
-    droid:NavigationBar.Color="{AppThemeBinding Light='White',
-                                                Dark='#141414'}"
-    droid:NavigationBar.Style="Default"
-    ios:Page.UseSafeArea="true"
     x:DataType="viewmodel:VoteViewModel">
 
     <ContentPage.Resources>
@@ -29,12 +23,12 @@
 
     <Grid
         Padding="12,0"
-        BackgroundColor="{AppThemeBinding Light='#F3F3F5',
-                                          Dark='Black'}"
         RowDefinitions="20, *, 16, 48, 30">
 
         <Border
             Grid.Row="1"
+            BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
+                                              Dark={StaticResource gray_4_dark}}"
             Shadow="{Shadow Brush='#121212',
                             Offset='0,20',
                             Radius='15',
@@ -43,8 +37,6 @@
             StrokeThickness="0">
             <Grid
                 Padding="12"
-                BackgroundColor="{AppThemeBinding Light='#D9D9D9',
-                                                  Dark={StaticResource Gray600}}"
                 ColumnDefinitions="*, Auto"
                 RowDefinitions="Auto, *">
                 <ffImageLoading:CachedImage
@@ -99,8 +91,8 @@
 
         <Border
             Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Light='#D9D9D9',
-                                              Dark={StaticResource Gray600}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
+                                              Dark={StaticResource gray_4_dark}}"
             IsVisible="{Binding IsHidden}"
             StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
             StrokeThickness="0">

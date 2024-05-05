@@ -51,23 +51,26 @@ public class CustomStringSplitterView : ContentView
                 Label label = new()
                 {
                     Text = item,
+                    FontFamily = "Roboto#500",
+                    FontSize = 12,
+                    CharacterSpacing = 0.4,
                     HorizontalTextAlignment = TextAlignment.Center,
                     VerticalTextAlignment = TextAlignment.Center
 
                 };
-                label.SetAppThemeColor(Label.TextColorProperty, Color.FromArgb("#703EDB"), Color.FromArgb("#9F79F1"));
+                label.SetAppThemeColor(Label.TextColorProperty, Color.FromArgb("#703edb"), Color.FromArgb("#e68fff"));
 
                 MyBorder border = new()
                 {
                     Content = label,
-                    Padding = new Thickness(8, 6, 8, 6),
+                    Padding = new Thickness(8, 5, 8, 5),
                     StrokeShape = new RoundRectangle
                     {
-                        CornerRadius = new CornerRadius(7, 7, 7, 7)
+                        CornerRadius = new CornerRadius(8, 8, 8, 8)
                     },
                     StrokeThickness = 0,
                 };
-                border.SetAppThemeColor(Border.BackgroundColorProperty, Color.FromArgb("#FAFAFC"), Color.FromArgb("#1C0F37"));
+                border.SetAppThemeColor(Border.BackgroundColorProperty, Color.FromArgb("#e4e2f3"), Color.FromArgb("#30133b"));
 
                 itemsLayout.Children.Add(border);
             }

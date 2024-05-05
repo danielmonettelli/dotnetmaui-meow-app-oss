@@ -3,49 +3,18 @@
     x:Class="Meow.Views.FavoritePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Meow.Controls"
-    xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
-    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:model="clr-namespace:Meow.Models"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
     xmlns:viewModel="clr-namespace:Meow.ViewModels"
-    droid:NavigationBar.Color="{AppThemeBinding Light='White',
-                                                Dark='#141414'}"
-    droid:NavigationBar.Style="Default"
-    ios:Page.UseSafeArea="true"
     x:DataType="viewModel:FavoriteViewModel"
     SizeChanged="ContentPage_SizeChanged">
-
-    <ContentPage.Resources>
-        <Style TargetType="Border">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light='#D9D9D9', Dark={StaticResource Gray600}}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light='#D9D9D9', Dark={StaticResource Gray600}}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
 
     <Shell.TitleView>
         <reusablecomponent:TitleViewReusable />
     </Shell.TitleView>
 
-    <Grid
-        BackgroundColor="{AppThemeBinding Light='#F3F3F5',
-                                          Dark='Black'}"
-        RowDefinitions="*">
+    <Grid RowDefinitions="*">
         <CollectionView
             Grid.Row="0"
             Margin="12,20,12,12"
@@ -63,6 +32,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:FavoriteCatResponse">
                     <Border
+                        BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
+                                                          Dark={StaticResource gray_4_dark}}"
                         HeightRequest="160"
                         StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
                         StrokeThickness="0"
@@ -77,7 +48,7 @@
                                 LoadingPlaceholder="icon_brand_bg.png"
                                 Source="{Binding ImageCat.Url}" />
 
-                            <controls:MyBorder
+                            <Border
                                 Grid.Row="0"
                                 Grid.Column="4"
                                 BackgroundColor="#121212"
@@ -100,7 +71,9 @@
                     <StackLayout
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand">
-                        <Label Text="You don't have favorite kitties on your list, meow!" />
+                        <Label
+                            Style="{StaticResource TxtCaption_1}"
+                            Text="You don't have favorite kitties on your list, meow!" />
                     </StackLayout>
                 </ContentView>
             </CollectionView.EmptyView>
@@ -109,8 +82,8 @@
         <BoxView
             Grid.Row="0"
             IsVisible="{Binding IsBusy}"
-            Color="{AppThemeBinding Light='#F3F3F5',
-                                    Dark='Black'}" />
+            Color="{AppThemeBinding Light={StaticResource background_light},
+                                    Dark={StaticResource background_dark}}" />
 
         <VerticalStackLayout
             HorizontalOptions="CenterAndExpand"
@@ -121,15 +94,15 @@
                 HeightRequest="50"
                 IsRunning="{Binding IsBusy}"
                 WidthRequest="50"
-                Color="{AppThemeBinding Light='#552fa8',
-                                        Dark='#9F79F1'}" />
+                Color="{AppThemeBinding Light={StaticResource violet_9_light},
+                                        Dark={StaticResource purple_9_dark}}" />
 
             <Label
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource TxtSubtitle1_1}"
                 Text="Loading"
-                TextColor="{AppThemeBinding Light='#552fa8',
-                                            Dark='#9F79F1'}" />
+                TextColor="{AppThemeBinding Light={StaticResource violet_9_light},
+                                            Dark={StaticResource purple_9_dark}}" />
         </VerticalStackLayout>
 
     </Grid>

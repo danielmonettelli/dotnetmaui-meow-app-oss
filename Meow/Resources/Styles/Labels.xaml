@@ -35,7 +35,7 @@
         TargetType="Label">
         <Setter Property="FontFamily" Value="Roboto#500" />
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light='#703edb', Dark='#ffffff'}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource violet_9_light}, Dark={StaticResource purple_12_dark}}" />
     </Style>
 
     <Style
@@ -43,7 +43,7 @@
         TargetType="Label">
         <Setter Property="FontFamily" Value="Roboto#500" />
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light='#FF000000', Dark='White'}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource gray_12_light}, Dark={StaticResource gray_12_dark}}" />
     </Style>
     <!--#endregion-->
 
@@ -57,9 +57,17 @@
     <Style
         x:Key="TxtSubtitle1_1"
         TargetType="Label">
-        <Setter Property="FontFamily" Value="Roboto#400" />
+        <Setter Property="FontFamily" Value="Roboto#700" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="TextColor" Value="#FFFFFFFF" />
+        <Setter Property="TextColor" Value="{StaticResource primary_light}" />
+    </Style>
+
+    <Style
+        x:Key="TxtSubtitle1_2"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="Roboto#500" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource primary_light}" />
     </Style>
     <!--#endregion-->
 
@@ -90,7 +98,7 @@
         TargetType="Label">
         <Setter Property="FontFamily" Value="Roboto#400" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light='#FF000000', Dark='White'}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource gray_12_light}, Dark={StaticResource gray_12_dark}}" />
     </Style>
     <!--#endregion-->
 
@@ -99,19 +107,10 @@
     <Style
         x:Key="TxtOverline_1"
         TargetType="Label">
-        <Setter Property="FontFamily" Value="Roboto#500" />
+        <Setter Property="FontFamily" Value="Roboto#700" />
         <Setter Property="FontSize" Value="10" />
-        <Setter Property="TextColor" Value="#FF6D1995" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource gray_12_light}, Dark={StaticResource gray_12_dark}}" />
     </Style>
-
-    <Style
-        x:Key="TxtOverline_2"
-        TargetType="Label">
-        <Setter Property="FontFamily" Value="Roboto#600" />
-        <Setter Property="FontSize" Value="10" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light='#FF000000', Dark='White'}" />
-    </Style>
-
     <!--#endregion-->
 
 </ResourceDictionary>
