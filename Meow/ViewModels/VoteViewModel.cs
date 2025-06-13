@@ -22,11 +22,12 @@ public partial class VoteViewModel : BaseViewModel
 
         _catService = catService;
 
-        InitializeDataAsync();
+        _ = InitializeDataAsync();
     }
 
+    // Changed from field to partial property with field keyword
     [ObservableProperty]
-    List<Cat> cats;
+    private List<Cat> cats;
 
     public async Task InitializeDataAsync()
     {

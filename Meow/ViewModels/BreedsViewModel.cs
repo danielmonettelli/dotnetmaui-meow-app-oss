@@ -18,7 +18,7 @@ public partial class BreedsViewModel : BaseViewModel
 
     partial void OnSelectedBreedChanged(Breed value)
     {
-        SelectedBreedAsync(value.Id);
+        _ = SelectedBreedAsync(value.Id);
     }
 
     public BreedsViewModel(ICatService catService)
@@ -27,7 +27,7 @@ public partial class BreedsViewModel : BaseViewModel
 
         _catService = catService;
 
-        InitializeDataAsync();
+        _ = InitializeDataAsync();
     }
 
     public async Task InitializeDataAsync()

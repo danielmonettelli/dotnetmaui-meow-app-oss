@@ -19,7 +19,7 @@ public partial class FavoriteViewModel : BaseViewModel
 
         _catService = catService;
 
-        InitializeDataAsync();
+        _ = InitializeDataAsync();
     }
 
     public async Task InitializeDataAsync()
