@@ -5,34 +5,39 @@ on:
     branches:
       - "main"
     paths-ignore:
-      - '.gitattributes'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'README.md'
-      - 'Design/**'
-      - 'Assets/**'
+      - ".gitattributes"
+      - ".gitignore"
+      - "LICENSE"
+      - "README.md"
+      - "Design/**"
+      - "Assets/**"
   pull_request:
     branches:
       - "*"
     paths-ignore:
-      - '.gitattributes'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'README.md'
-      - 'Design/**'
-      - 'Assets/**'
+      - ".gitattributes"
+      - ".gitignore"
+      - "LICENSE"
+      - "README.md"
+      - "Design/**"
+      - "Assets/**"
 
 jobs:
   Build_Android:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET v8.0
-        uses: actions/setup-dotnet@v4.0.0
+      - name: Setup .NET v9.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "9.0.x"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "microsoft"
+          java-version: "17"
 
       - name: Install .NET MAUI Workload
         run: |
@@ -44,18 +49,18 @@ jobs:
 
       - name: Build Android App
         run: |
-          dotnet build ./Meow -f net8.0-android
+          dotnet build ./Meow -f net9.0-android -c Release
 
   Build_iOS:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET v8.0
-        uses: actions/setup-dotnet@v4.0.0
+      - name: Setup .NET v9.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "9.0.x"
 
       - name: Install .NET MAUI Workload
         run: |
@@ -72,18 +77,18 @@ jobs:
 
       - name: Build iOS App
         run: |
-          dotnet build ./Meow -f net8.0-ios
-          
+          dotnet build ./Meow -f net9.0-ios -c Release
+
   Build_MacCatalyst:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET v8.0
-        uses: actions/setup-dotnet@v4.0.0
+      - name: Setup .NET v9.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "9.0.x"
 
       - name: Install .NET MAUI Workload
         run: |
@@ -100,32 +105,32 @@ jobs:
 
       - name: Build macOS App
         run: |
-          dotnet build ./Meow -f net8.0-maccatalyst
+          dotnet build ./Meow -f net9.0-maccatalyst -c Release
 
   Build_Windows:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
-          distribution: 'microsoft'
-          java-version: '11'
+          distribution: "microsoft"
+          java-version: "17"
 
-      - name: Setup .NET v8.0
-        uses: actions/setup-dotnet@v4.0.0
+      - name: Setup .NET v9.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "9.0.x"
 
       - name: Install .NET MAUI Workload
         run: |
           dotnet workload install maui
-          
+
       - name: Restore NuGet
         run: |
           dotnet restore ./Meow
 
       - name: Build Windows App
         run: |
-          dotnet build ./Meow
+          dotnet build ./Meow -c Release
