@@ -198,10 +198,10 @@
                                     Dark={StaticResource background_dark}}" />
 
         <VerticalStackLayout
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="Center"
             IsVisible="{Binding IsBusy}"
             Spacing="10"
-            VerticalOptions="CenterAndExpand">
+            VerticalOptions="Center">
             <ActivityIndicator
                 HeightRequest="50"
                 IsRunning="{Binding IsBusy}"
