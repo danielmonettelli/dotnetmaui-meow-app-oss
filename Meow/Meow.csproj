@@ -73,9 +73,9 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="12.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		<PackageReference Include="FFImageLoadingCompat" Version="3.0.0" />
-		<PackageReference Include="FFImageLoadingCompat.Maui" Version="3.0.0" />
-		<PackageReference Include="FFImageLoadingCompat.Transformations" Version="3.0.0" />
+		<PackageReference Include="FFImageLoadingCompat" Version="0.1.1" />
+		<PackageReference Include="FFImageLoadingCompat.Maui" Version="0.1.1" />
+		<PackageReference Include="FFImageLoadingCompat.Transformations" Version="0.1.1" />
 		<PackageReference Include="IconPacks.Material" Version="1.0.8732.5-build" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.0-preview" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.80" />
