@@ -22,7 +22,7 @@
                         </VisualState>
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource violet_12_light},Dark={StaticResource purple_9_dark}}}" />
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource violet_12_light}, Dark={StaticResource purple_9_dark}}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -198,10 +198,10 @@
                                     Dark={StaticResource background_dark}}" />
 
         <VerticalStackLayout
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="Center"
             IsVisible="{Binding IsBusy}"
             Spacing="10"
-            VerticalOptions="CenterAndExpand">
+            VerticalOptions="Center">
             <ActivityIndicator
                 HeightRequest="50"
                 IsRunning="{Binding IsBusy}"

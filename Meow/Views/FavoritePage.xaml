@@ -69,8 +69,8 @@
             <CollectionView.EmptyView>
                 <ContentView>
                     <StackLayout
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
                         <Label
                             Style="{StaticResource TxtCaption_1}"
                             Text="You don't have favorite kitties on your list, meow!" />
@@ -86,10 +86,10 @@
                                     Dark={StaticResource background_dark}}" />
 
         <VerticalStackLayout
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="Center"
             IsVisible="{Binding IsBusy}"
             Spacing="10"
-            VerticalOptions="CenterAndExpand">
+            VerticalOptions="Center">
             <ActivityIndicator
                 HeightRequest="50"
                 IsRunning="{Binding IsBusy}"
