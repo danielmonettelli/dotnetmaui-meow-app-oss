@@ -7,7 +7,7 @@ public partial class FavoriteViewModel : BaseViewModel
 {
     #region Private Fields
 
-    private readonly ICatService _catService;
+    private readonly ICacheService _cacheService;
 
     #endregion
 
@@ -31,14 +31,26 @@ public partial class FavoriteViewModel : BaseViewModel
     [ObservableProperty]
     private int columns;
 
+    /// <summary>
+    /// Number of unsynced favorites
+    /// </summary>
+    [ObservableProperty]
+    private int unsyncedCount;
+
+    /// <summary>
+    /// Indicates if sync is in progress
+    /// </summary>
+    [ObservableProperty]
+    private bool isSyncing;
+
     #endregion
 
     #region Constructor
 
-    public FavoriteViewModel(ICatService catService)
+    public FavoriteViewModel(ICacheService cacheService)
     {
         Title = "Favorites";
-        _catService = catService;
+        _cacheService = cacheService;
 
         // Initialize data loading when instance is created
         _ = InitializeDataAsync();
@@ -55,9 +67,30 @@ public partial class FavoriteViewModel : BaseViewModel
     {
         await PerformOperationAsync(async () =>
         {
-            // Load all favorite cats
-            FavoriteCats = await _catService.GetFavoriteKittens();
+            // Load all favorite cats from cache (with sync if online)
+            FavoriteCats = await _cacheService.GetFavoritesAsync();
+            
+            // Update unsynced count
+            UnsyncedCount = await _cacheService.GetUnsyncedFavoritesCountAsync();
         });
+    }
+
+    /// <summary>
+    /// Manually syncs favorites with server
+    /// </summary>
+    public async Task SyncFavoritesAsync()
+    {
+        IsSyncing = true;
+        
+        var success = await _cacheService.SyncFavoritesAsync();
+        
+        if (success)
+        {
+            // Refresh data after sync
+            await InitializeDataAsync();
+        }
+        
+        IsSyncing = false;
     }
 
     #endregion
@@ -70,14 +103,40 @@ public partial class FavoriteViewModel : BaseViewModel
     [RelayCommand]
     public async Task DeleteFavoriteKittenAsync()
     {
+        if (SelectedFavoriteCat?.Image?.Id == null) return;
+
         await PerformOperationAsync(async () =>
         {
-            // Remove selected cat from favorites
-            await _catService.DeleteFavoriteKitten(SelectedFavoriteCat.Id);
+            // Remove selected cat from favorites using cache service
+            var success = await _cacheService.RemoveFavoriteAsync(SelectedFavoriteCat.Image.Id);
             
-            // Refresh the favorites list
-            FavoriteCats = await _catService.GetFavoriteKittens();
+            if (success)
+            {
+                // Refresh the favorites list
+                FavoriteCats = await _cacheService.GetFavoritesAsync();
+                
+                // Update unsynced count
+                UnsyncedCount = await _cacheService.GetUnsyncedFavoritesCountAsync();
+            }
         });
+    }
+
+    /// <summary>
+    /// Command to manually sync favorites
+    /// </summary>
+    [RelayCommand]
+    public async Task SyncFavoritesCommand()
+    {
+        await SyncFavoritesAsync();
+    }
+
+    /// <summary>
+    /// Command to refresh favorites
+    /// </summary>
+    [RelayCommand]
+    public async Task RefreshFavoritesAsync()
+    {
+        await InitializeDataAsync();
     }
 
     #endregion

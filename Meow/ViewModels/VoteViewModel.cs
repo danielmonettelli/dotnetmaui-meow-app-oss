@@ -7,7 +7,7 @@ public partial class VoteViewModel : BaseViewModel
 {
     #region Private Fields
 
-    private readonly ICatService _catService;
+    private readonly ICacheService _cacheService;
 
     #endregion
 
@@ -47,10 +47,10 @@ public partial class VoteViewModel : BaseViewModel
 
     #region Constructor
 
-    public VoteViewModel(ICatService catService)
+    public VoteViewModel(ICacheService cacheService)
     {
         Title = "Vote";
-        _catService = catService;
+        _cacheService = cacheService;
 
         // Initialize data loading when instance is created
         _ = InitializeDataAsync();
@@ -72,8 +72,21 @@ public partial class VoteViewModel : BaseViewModel
         // Hide content while loading
         IsHidden = true;
         
-        // Load a random cat from service
-        Cats = await _catService.GetRandomKitty();
+        // Load cats from cache service (will fallback to API if needed)
+        Cats = await _cacheService.GetVotingCatsAsync();
+        
+        // Check if current cat is in favorites
+        if (Cats?.Any() == true)
+        {
+            var currentCat = Cats.FirstOrDefault();
+            var isFavorite = await _cacheService.IsFavoriteAsync(currentCat.Id);
+            
+            if (isFavorite)
+            {
+                ImageHeart = "icon_heart_solid.png";
+                LayoutState = LayoutState.Success;
+            }
+        }
         
         // Small delay to improve UX
         await Task.Delay(1500);
@@ -125,28 +138,37 @@ public partial class VoteViewModel : BaseViewModel
     /// <param name="isAdding">True to add, False to remove from favorites</param>
     private async Task ToggleFavoriteKittenAsync(bool isAdding)
     {
+        var currentCat = Cats?.FirstOrDefault();
+        if (currentCat == null) return;
+
         if (isAdding)
         {
-            // Add cat to favorites
-            await _catService.AddFavoriteKitten(Cats.FirstOrDefault().Id);
+            // Add cat to favorites using cache service
+            var success = await _cacheService.AddFavoriteAsync(currentCat);
             
-            // Update UI to show it's in favorites
-            ImageHeart = "icon_heart_solid.png";
-            LayoutState = LayoutState.Success;
+            if (success)
+            {
+                // Update UI to show it's in favorites
+                ImageHeart = "icon_heart_solid.png";
+                LayoutState = LayoutState.Success;
 
-            // Start heart animation
-            Progress = TimeSpan.Zero;
-            IsAnimation = true;
+                // Start heart animation
+                Progress = TimeSpan.Zero;
+                IsAnimation = true;
+            }
         }
         else
         {
             // Stop animation and remove from favorites
             IsAnimation = false;
-            await _catService.RemoveFavoriteKitten(Cats.FirstOrDefault().Id);
+            var success = await _cacheService.RemoveFavoriteAsync(currentCat.Id);
             
-            // Update UI to show it's not in favorites
-            ImageHeart = "icon_heart_outline.png";
-            LayoutState = LayoutState.None;
+            if (success)
+            {
+                // Update UI to show it's not in favorites
+                ImageHeart = "icon_heart_outline.png";
+                LayoutState = LayoutState.None;
+            }
         }
     }
 

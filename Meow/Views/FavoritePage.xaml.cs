@@ -2,11 +2,12 @@ namespace Meow.Views;
 
 public partial class FavoritePage : ContentPage
 {
-    private readonly FavoriteViewModel vm = new(new CatService());
+    private readonly FavoriteViewModel vm;
 
-    public FavoritePage()
+    public FavoritePage(FavoriteViewModel favoriteViewModel)
     {
         InitializeComponent();
+        vm = favoriteViewModel;
 
         BindingContext = vm;
     }

@@ -7,7 +7,7 @@ public partial class BreedsViewModel : BaseViewModel
 {
     #region Private Fields
 
-    private readonly ICatService _catService;
+    private readonly ICacheService _cacheService;
 
     #endregion
 
@@ -55,10 +55,10 @@ public partial class BreedsViewModel : BaseViewModel
 
     #region Constructor
 
-    public BreedsViewModel(ICatService catService)
+    public BreedsViewModel(ICacheService cacheService)
     {
         Title = "Breeds";
-        _catService = catService;
+        _cacheService = cacheService;
 
         // Initialize data loading when instance is created
         _ = InitializeDataAsync();
@@ -75,14 +75,17 @@ public partial class BreedsViewModel : BaseViewModel
     {
         IsBusy = true;
 
-        // Load all available breeds
-        Breeds = await _catService.GetBreeds();
+        // Load all available breeds from cache (with fallback to API)
+        Breeds = await _cacheService.GetBreedsAsync();
 
         // Select the first breed by default
-        SelectedBreed = Breeds.FirstOrDefault();
+        SelectedBreed = Breeds?.FirstOrDefault();
 
-        // Load kittens for the selected breed
-        KittensByBreed = await _catService.GetRandomKittensByBreed(SelectedBreed.Id);
+        // Load kittens for the selected breed if available
+        if (SelectedBreed != null)
+        {
+            KittensByBreed = await _cacheService.GetCatsByBreedAsync(SelectedBreed.Id);
+        }
 
         IsBusy = false;
     }
@@ -93,10 +96,12 @@ public partial class BreedsViewModel : BaseViewModel
     /// <param name="id">The breed ID to filter kittens</param>
     public async Task SelectedBreedAsync(string id)
     {
+        if (string.IsNullOrEmpty(id)) return;
+
         IsLoadBreeds = true;
 
-        // Get kittens that match the selected breed
-        KittensByBreed = await _catService.GetRandomKittensByBreed(id);
+        // Get kittens that match the selected breed from cache
+        KittensByBreed = await _cacheService.GetCatsByBreedAsync(id);
 
         IsLoadBreeds = false;
     }

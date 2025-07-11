@@ -19,6 +19,9 @@ public static class MauiProgram
             });
 
         builder.Services.AddSingleton<ICatService, CatService>();
+        builder.Services.AddSingleton<ICacheService, CacheService>();
+        builder.Services.AddSingleton<BackgroundSyncService>();
+        builder.Services.AddSingleton<ConnectivityService>();
 
         builder.Services.AddSingleton<VoteViewModel>();
         builder.Services.AddTransient<VotePage>();

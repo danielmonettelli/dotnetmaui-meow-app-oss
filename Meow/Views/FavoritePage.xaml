@@ -46,7 +46,7 @@
                                 Grid.ColumnSpan="5"
                                 Aspect="AspectFill"
                                 LoadingPlaceholder="icon_brand_bg.png"
-                                Source="{Binding ImageCat.Url}" />
+                                Source="{Binding Image.Url}" />
 
                             <Border
                                 Grid.Row="0"

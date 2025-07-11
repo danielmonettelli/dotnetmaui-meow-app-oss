@@ -3,7 +3,7 @@
 public class FavoriteCatResponse
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public string Id { get; set; }
 
     [JsonPropertyName("user_id")]
     public string User_id { get; set; }
@@ -15,10 +15,10 @@ public class FavoriteCatResponse
     public string Sub_id { get; set; }
 
     [JsonPropertyName("created_at")]
-    public DateTime Created_at { get; set; }
+    public string Created_at { get; set; }
 
     [JsonPropertyName("image")]
-    public Image ImageCat { get; set; }
+    public Cat Image { get; set; }
 }
 
 public class Image
