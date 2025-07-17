@@ -15,7 +15,20 @@ public partial class App : Application
         // Start background sync service when app starts
         _backgroundSyncService?.Start();
 
-        return new Window(new AppShell());
+        var window = new Window(new AppShell());
+        
+        // Force portrait orientation
+        window.Created += (s, e) =>
+        {
+#if ANDROID
+            if (Platform.CurrentActivity != null)
+            {
+                Platform.CurrentActivity.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+            }
+#endif
+        };
+
+        return window;
     }
 
     protected override void CleanUp()

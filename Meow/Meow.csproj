@@ -78,12 +78,12 @@
 		<PackageReference Include="FFImageLoadingCompat.Transformations" Version="0.1.1" />
 		<PackageReference Include="IconPacks.Material" Version="1.0.8732.5-build" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.0-preview" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.81" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.81" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.90" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.90" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.7" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.6" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
 	</ItemGroup>
 
 	<ItemGroup>
