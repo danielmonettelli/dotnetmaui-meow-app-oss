@@ -12,15 +12,18 @@ public partial class FavoritePage : ContentPage
         BindingContext = vm;
     }
 
-    protected async override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         await vm.InitializeDataAsync();
     }
 
-    private void ContentPage_SizeChanged(object sender, EventArgs e)
+    private void ContentPage_SizeChanged(object? sender, EventArgs e)
     {
-        vm.Columns = (int)(Width / 174);
+        if (Width > 0)
+        {
+            vm.Columns = Math.Max(1, (int)(Width / 174));
+        }
     }
 }

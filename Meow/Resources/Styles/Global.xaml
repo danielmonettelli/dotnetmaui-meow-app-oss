@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <?xaml-comp compile="true" ?>
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Meow.Controls"
-    xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls">
 
     <Style
@@ -12,8 +11,6 @@
         TargetType="Page">
         <Setter Property="Padding" Value="0" />
         <Setter Property="ios:Page.UseSafeArea" Value="True" />
-        <Setter Property="droid:NavigationBar.Color" Value="{AppThemeBinding Light={StaticResource primary_light}, Dark={StaticResource primary_dark}}" />
-        <Setter Property="droid:NavigationBar.Style" Value="Default" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource background_light}, Dark={StaticResource background_dark}}" />
     </Style>
 

@@ -3,10 +3,9 @@
     x:Class="Meow.Views.FavoritePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
-    xmlns:model="clr-namespace:Meow.Models"
+    xmlns:model="clr-namespace:Meow.Domain.Entities;assembly=Meow.Domain"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
-    xmlns:viewModel="clr-namespace:Meow.ViewModels"
+    xmlns:viewModel="clr-namespace:Meow.Presentation.ViewModels"
     x:DataType="viewModel:FavoriteViewModel"
     SizeChanged="ContentPage_SizeChanged">
 
@@ -19,8 +18,8 @@
             Grid.Row="0"
             Margin="12,20,12,12"
             ItemsSource="{Binding FavoriteCats}"
+            ItemSizingStrategy="MeasureFirstItem"
             SelectedItem="{Binding SelectedFavoriteCat}"
-            SelectionChangedCommand="{Binding DeleteFavoriteKittenCommand}"
             SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
@@ -35,33 +34,38 @@
                         BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
                                                           Dark={StaticResource gray_4_dark}}"
                         HeightRequest="160"
-                        StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
-                        StrokeThickness="0"
-                        WidthRequest="160">
-                        <Grid
-                            ColumnDefinitions="*,*,*,*,*"
-                            RowDefinitions="*,*,*,*,*">
-                            <ffImageLoading:CachedImage
-                                Grid.RowSpan="5"
-                                Grid.ColumnSpan="5"
+                        StrokeShape="RoundRectangle 16"
+                        StrokeThickness="0">
+                        <Grid InputTransparent="True">
+                            <Image
                                 Aspect="AspectFill"
-                                LoadingPlaceholder="icon_brand_bg.png"
-                                Source="{Binding Image.Url}" />
+                                InputTransparent="True">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CachingEnabled="True"
+                                        CacheValidity="14.00:00:00"
+                                        Uri="{Binding Image.Url}" />
+                                </Image.Source>
+                            </Image>
 
                             <Border
-                                Grid.Row="0"
-                                Grid.Column="4"
-                                BackgroundColor="#121212"
-                                Opacity="0.4"
-                                StrokeShape="{RoundRectangle CornerRadius='0,0,16,0'}"
-                                StrokeThickness="0" />
-                            <Image
-                                Grid.Row="0"
-                                Grid.Column="4"
-                                HorizontalOptions="Center"
-                                Scale="0.6"
-                                Source="icon_heart_solid.png"
-                                VerticalOptions="Center" />
+                                BackgroundColor="#66121212"
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                InputTransparent="True"
+                                Margin="0"
+                                StrokeShape="{RoundRectangle CornerRadius='0,16,0,8'}"
+                                StrokeThickness="0"
+                                VerticalOptions="Start"
+                                WidthRequest="32">
+                                <Image
+                                    HeightRequest="18"
+                                    HorizontalOptions="Center"
+                                    InputTransparent="True"
+                                    Source="icon_heart_solid.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="18" />
+                            </Border>
                         </Grid>
                     </Border>
                 </DataTemplate>

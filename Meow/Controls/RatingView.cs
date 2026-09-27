@@ -1,4 +1,4 @@
-﻿// MAUI Rating View Control is the work of Naweed Akram.
+// MAUI Rating View Control is the work of Naweed Akram.
 // The repository of his project is available at the following link:
 // https://github.com/naweed/Maui.Controls.RatingView
 namespace Meow.Controls
@@ -6,7 +6,7 @@ namespace Meow.Controls
     public class RatingView : GraphicsView
     {
         //Rating Drawable Canvas
-        private RatingCanvas _drawableCanvas;
+        private RatingCanvas _drawableCanvas = null!;
 
         #region Bindable Properties
 
@@ -16,7 +16,6 @@ namespace Meow.Controls
             typeof(RatingView),
             5,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -43,7 +42,6 @@ namespace Meow.Controls
             typeof(RatingView),
             24f,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -70,7 +68,6 @@ namespace Meow.Controls
             typeof(RatingView),
             6f,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -95,14 +92,24 @@ namespace Meow.Controls
             nameof(Value),
             typeof(double),
             typeof(RatingView),
-            2.5d,
+            0d,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
-                if (newValue is not null && bindableObject is RatingView rating && newValue != oldValue)
+                if (bindableObject is RatingView rating)
                     rating.UpdateValue();
+            },
+            coerceValue: (_, value) =>
+            {
+                if (value is null) return 0d;
+                if (value is double d) return d;
+                if (value is int i) return (double)i;
+                if (value is float f) return (double)f;
+                if (value is long l) return (double)l;
+                if (value is short s) return (double)s;
+                if (value is byte b) return (double)b;
+                try { return Convert.ToDouble(value); } catch { return 0d; }
             });
 
         public double Value
@@ -114,7 +121,6 @@ namespace Meow.Controls
         private void UpdateValue()
         {
             _drawableCanvas.Value = Value;
-            SetSize();
             Invalidate();
         }
 
@@ -124,11 +130,10 @@ namespace Meow.Controls
             typeof(RatingView),
             Color.FromArgb("#FFFF00"),
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
-                if (newValue is not null && bindableObject is RatingView rating && newValue != oldValue)
+                if (bindableObject is RatingView rating)
                     rating.UpdateRatedFillColor();
             });
 
@@ -141,7 +146,6 @@ namespace Meow.Controls
         private void UpdateRatedFillColor()
         {
             _drawableCanvas.RatedFillColor = RatedFillColor;
-            SetSize();
             Invalidate();
         }
 
@@ -151,11 +155,10 @@ namespace Meow.Controls
             typeof(RatingView),
             Color.FromArgb("#D3D3D3"),
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
-                if (newValue is not null && bindableObject is RatingView rating && newValue != oldValue)
+                if (bindableObject is RatingView rating)
                     rating.UpdateUnRatedFillColor();
             });
 
@@ -168,7 +171,6 @@ namespace Meow.Controls
         private void UpdateUnRatedFillColor()
         {
             _drawableCanvas.UnRatedFillColor = UnRatedFillColor;
-            SetSize();
             Invalidate();
         }
 
@@ -178,7 +180,6 @@ namespace Meow.Controls
             typeof(RatingView),
             Color.FromArgb("#FFFFE0"),
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -205,7 +206,6 @@ namespace Meow.Controls
             typeof(RatingView),
             1f,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -232,7 +232,6 @@ namespace Meow.Controls
             typeof(RatingView),
             true,
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -257,7 +256,6 @@ namespace Meow.Controls
             typeof(RatingView),
             "M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8\n\t\tc-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601\n\t\tc45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z",
             BindingMode.OneWay,
-            validateValue: (_, value) => value != null,
             propertyChanged:
             (bindableObject, oldValue, newValue) =>
             {
@@ -309,9 +307,21 @@ namespace Meow.Controls
         public RatingView()
         {
             //Create and set Drawable Canvas
-            _drawableCanvas = new RatingCanvas();
+            _drawableCanvas = new RatingCanvas
+            {
+                ItemCount = ItemCount,
+                ItemSize = ItemSize,
+                ItemSpacing = ItemSpacing,
+                Value = Value,
+                RatedFillColor = RatedFillColor,
+                UnRatedFillColor = UnRatedFillColor,
+                StrokeColor = StrokeColor,
+                StrokeWidth = StrokeWidth,
+                ShapePath = ShapePath
+            };
 
             Drawable = _drawableCanvas;
+            SetSize();
         }
     }
 }

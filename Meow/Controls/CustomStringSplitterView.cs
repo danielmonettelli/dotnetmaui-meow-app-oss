@@ -1,8 +1,12 @@
-﻿namespace Meow.Controls;
+namespace Meow.Controls;
 
 public class CustomStringSplitterView : ContentView
 {
-    private StackLayout itemsLayout;
+    private readonly StackLayout itemsLayout = new()
+    {
+        Spacing = 6,
+        Orientation = StackOrientation.Horizontal
+    };
 
     public static readonly BindableProperty InputTextProperty =
         BindableProperty.Create(nameof(InputText), typeof(string), typeof(CustomStringSplitterView), null, propertyChanged: OnInputTextChanged);
@@ -15,12 +19,6 @@ public class CustomStringSplitterView : ContentView
 
     public CustomStringSplitterView()
     {
-        itemsLayout = new StackLayout
-        {
-            Spacing = 6,
-            Orientation = StackOrientation.Horizontal
-        };
-
         Content = new ScrollView
         {
             HorizontalScrollBarVisibility = ScrollBarVisibility.Never,

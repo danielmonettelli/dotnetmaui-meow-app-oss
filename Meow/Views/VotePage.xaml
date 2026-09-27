@@ -4,131 +4,228 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:Meow.Converters"
-    xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
-    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
-    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:page="clr-namespace:Meow.Views"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
-    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-    xmlns:viewmodel="clr-namespace:Meow.ViewModels"
+    xmlns:viewmodel="clr-namespace:Meow.Presentation.ViewModels"
     x:DataType="viewmodel:VoteViewModel">
 
     <ContentPage.Resources>
         <converter:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+        <converter:BoolToErrorTypeConverter x:Key="BoolToErrorTypeConverter" />
+        <converter:IsNotNullConverter x:Key="IsNotNullConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
         <reusablecomponent:TitleViewReusable />
     </Shell.TitleView>
 
-    <Grid
-        Padding="12,0"
-        RowDefinitions="20, *, 16, 48, 30">
+    <Grid Padding="12,0" RowDefinitions="Auto, 8, *, 16, 48, 30">
 
+        <!--  Warning banner (no internet / API error)  -->
         <Border
-            Grid.Row="1"
+            x:Name="WarningBanner"
+            Grid.Row="0"
+            Padding="14,8"
+            BackgroundColor="#e15050"
+            IsVisible="{Binding WarningMessage, Converter={StaticResource IsNotNullConverter}}"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="0">
+            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="10">
+                <Label
+                    Grid.Column="0"
+                    FontFamily="Roboto#700"
+                    FontSize="16"
+                    Text="⚠"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="1"
+                    FontFamily="Roboto#500"
+                    FontSize="13"
+                    Text="{Binding WarningMessage}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="2"
+                    FontFamily="Roboto#400"
+                    FontSize="11"
+                    Opacity="0.8"
+                    Text="✕"
+                    TextColor="White"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDismissWarning" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Border>
+
+        <!--  Success/recovery banner  -->
+        <Border
+            x:Name="SuccessBanner"
+            Grid.Row="0"
+            Padding="14,8"
+            BackgroundColor="#56dd73"
+            IsVisible="{Binding SuccessMessage, Converter={StaticResource IsNotNullConverter}}"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="0">
+            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10">
+                <Label
+                    Grid.Column="0"
+                    FontFamily="Roboto#700"
+                    FontSize="16"
+                    Text="✓"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="1"
+                    FontFamily="Roboto#500"
+                    FontSize="13"
+                    Text="{Binding SuccessMessage}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <!--  Error/Offline State View (shown only when no data at all)  -->
+        <page:ErrorStateView
+            Grid.Row="2"
+            ErrorType="{Binding IsNoInternet, Converter={StaticResource BoolToErrorTypeConverter}}"
+            IsVisible="{Binding HasError}"
+            RetryCommand="{Binding RetryCommand}" />
+
+        <!--  Cat image card  -->
+        <Border
+            x:Name="CatCardBorder"
+            Grid.Row="2"
             BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
                                               Dark={StaticResource gray_4_dark}}"
-            Shadow="{Shadow Brush='#121212',
-                            Offset='0,20',
-                            Radius='15',
-                            Opacity='0.3'}"
-            StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+            IsVisible="{Binding HasError, Converter={StaticResource InvertBooleanConverter}}"
+            StrokeShape="RoundRectangle 16"
             StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow
+                    Brush="#121212"
+                    Offset="0,20"
+                    Opacity="0.3"
+                    Radius="15" />
+            </Border.Shadow>
             <Grid
                 Padding="12"
                 ColumnDefinitions="*, Auto"
                 RowDefinitions="Auto, *">
-                <ffImageLoading:CachedImage
+                <Image
+                    x:Name="CatImage"
                     Grid.RowSpan="2"
                     Grid.ColumnSpan="2"
                     Margin="-12"
                     Aspect="AspectFill"
-                    FadeAnimationEnabled="False"
                     IsEnabled="{Binding IsHidden, Converter={StaticResource InvertBooleanConverter}}"
-                    Source="{Binding Cats[0].Url}">
-                    <ffImageLoading:CachedImage.GestureRecognizers>
+                    Source="{Binding CurrentCat.Url}">
+                    <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ManageFavoriteKittenCommand}" />
-                    </ffImageLoading:CachedImage.GestureRecognizers>
-                </ffImageLoading:CachedImage>
+                    </Image.GestureRecognizers>
+                </Image>
 
+                <!--  Floating heart status indicator & favorite button  -->
                 <Border
                     Grid.Row="0"
                     Grid.Column="1"
                     BackgroundColor="#c0585858"
                     HeightRequest="40"
-                    StrokeShape="{RoundRectangle CornerRadius='5,5,5,5'}"
+                    HorizontalOptions="End"
+                    StrokeShape="RoundRectangle 8"
                     StrokeThickness="0"
-                    WidthRequest="40" />
-                <Image
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding IsBusy, Converter={StaticResource InvertBooleanConverter}}"
-                    Source="{Binding ImageHeart}"
-                    VerticalOptions="Center" />
-
-                <ActivityIndicator
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HeightRequest="30"
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}"
-                    WidthRequest="30"
-                    Color="#cfbaff" />
-
-                <skia:SKLottieView
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="2"
-                    Margin="-12"
-                    IsAnimationEnabled="{Binding IsAnimation}"
-                    IsVisible="{Binding IsAnimation}"
-                    Progress="{Binding Progress}"
-                    Source="animation_hearts.json" />
+                    VerticalOptions="Start"
+                    WidthRequest="40">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ManageFavoriteKittenCommand}" />
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Image
+                            HeightRequest="24"
+                            HorizontalOptions="Center"
+                            IsVisible="{Binding IsBusy, Converter={StaticResource InvertBooleanConverter}}"
+                            Source="{Binding ImageHeart}"
+                            VerticalOptions="Center"
+                            WidthRequest="24" />
+                        <ActivityIndicator
+                            HeightRequest="24"
+                            HorizontalOptions="Center"
+                            IsRunning="{Binding IsBusy}"
+                            IsVisible="{Binding IsBusy}"
+                            VerticalOptions="Center"
+                            WidthRequest="24"
+                            Color="#cfbaff" />
+                    </Grid>
+                </Border>
             </Grid>
 
         </Border>
 
+        <!--  Placeholder while loading  -->
         <Border
-            Grid.Row="1"
+            x:Name="LoadingPlaceholderBorder"
+            Grid.Row="2"
             BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
                                               Dark={StaticResource gray_4_dark}}"
             IsVisible="{Binding IsHidden}"
-            StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+            StrokeShape="RoundRectangle 16"
             StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow
+                    Brush="#121212"
+                    Offset="0,20"
+                    Opacity="0.3"
+                    Radius="15" />
+            </Border.Shadow>
             <Grid RowDefinitions="10*,80*,10*">
-                <Image
-                    Grid.Row="1"
-                    Source="icon_brand_bg.png" />
+                <Image Grid.Row="1" Source="icon_brand_bg.png" />
             </Grid>
         </Border>
 
+        <!--  Native Heart Confetti Overlay  -->
         <Grid
-            Grid.Row="3"
-            ColumnDefinitions="Auto, *, Auto">
-            <mdc:Button
+            x:Name="HeartConfettiCanvas"
+            Grid.Row="2"
+            InputTransparent="True"
+            IsVisible="False"
+            ZIndex="10" />
+
+        <!--  Vote buttons  -->
+        <Grid
+            Grid.Row="4"
+            ColumnDefinitions="*, 16, *"
+            IsVisible="{Binding HasError, Converter={StaticResource InvertBooleanConverter}}">
+            <Button
                 Grid.Column="0"
                 BackgroundColor="#56dd73"
-                Command="{Binding GetKittyCommand}"
-                FontColor="White"
-                FontSize="16"
-                IconColor="White"
-                IconData="{Static icon:Material.ThumbUp}"
-                Shape="8"
-                Style="{DynamicResource FilledButtonStyle}"
-                Text="LOVE IT" />
+                Command="{Binding LoveKittyCommand}"
+                ContentLayout="Left,8"
+                CornerRadius="12"
+                FontAttributes="Bold"
+                FontFamily="Roboto#700"
+                FontSize="15"
+                HeightRequest="48"
+                ImageSource="icon_thumb_up.png"
+                IsEnabled="{Binding IsTransitioning, Converter={StaticResource InvertBooleanConverter}}"
+                Text="LOVE IT"
+                TextColor="White" />
 
-            <mdc:Button
+            <Button
                 Grid.Column="2"
                 BackgroundColor="#e15050"
                 Command="{Binding GetKittyCommand}"
-                FontColor="White"
-                FontSize="16"
-                IconColor="White"
-                IconData="{Static icon:Material.ThumbDown}"
-                Shape="8"
-                Style="{DynamicResource FilledButtonStyle}"
-                Text="NOPE IT" />
+                ContentLayout="Left,8"
+                CornerRadius="12"
+                FontAttributes="Bold"
+                FontFamily="Roboto#700"
+                FontSize="15"
+                HeightRequest="48"
+                ImageSource="icon_thumb_down.png"
+                IsEnabled="{Binding IsTransitioning, Converter={StaticResource InvertBooleanConverter}}"
+                Text="NOPE IT"
+                TextColor="White" />
         </Grid>
     </Grid>
 </ContentPage>

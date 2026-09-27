@@ -4,14 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Meow.Controls"
-    xmlns:ffImageLoading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Compat.Maui"
-    xmlns:model="clr-namespace:Meow.Models"
+    xmlns:converter="clr-namespace:Meow.Converters"
+    xmlns:model="clr-namespace:Meow.Domain.Entities;assembly=Meow.Domain"
     xmlns:reusablecomponent="clr-namespace:Meow.ReusableComponents"
-    xmlns:viewModel="clr-namespace:Meow.ViewModels"
+    xmlns:viewModel="clr-namespace:Meow.Presentation.ViewModels"
     x:DataType="viewModel:BreedsViewModel">
 
     <ContentPage.Resources>
-        <Style TargetType="Border">
+        <converter:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+        <Style x:Key="BreedChipBorderStyle" TargetType="Border">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
@@ -53,8 +54,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Breed">
                             <Border
+                                Style="{StaticResource BreedChipBorderStyle}"
                                 Padding="14"
-                                StrokeShape="{RoundRectangle CornerRadius='8,8,8,8'}"
+                                StrokeShape="RoundRectangle 8"
                                 StrokeThickness="0">
                                 <Label
                                     Style="{StaticResource TxtSubtitle1_2}"
@@ -64,9 +66,57 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
+                <!--  Empty gallery state  -->
+                <Border
+                    Grid.Row="2"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
+                                                      Dark={StaticResource gray_4_dark}}"
+                    IsVisible="{Binding HasNoKittens}"
+                    Padding="24"
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="0">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="#121212"
+                            Offset="0,10"
+                            Opacity="0.15"
+                            Radius="10" />
+                    </Border.Shadow>
+                    <Grid
+                        HorizontalOptions="Center"
+                        RowDefinitions="Auto, Auto, Auto"
+                        RowSpacing="8"
+                        VerticalOptions="Center">
+                        <Image
+                            Grid.Row="0"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            Opacity="{AppThemeBinding Light=0.9, Dark=0.95}"
+                            Source="{AppThemeBinding Light=icon_brand_light.png, Dark=icon_brand_dark.png}"
+                            WidthRequest="60" />
+                        <Label
+                            Grid.Row="1"
+                            FontFamily="Roboto#700"
+                            FontSize="15"
+                            HorizontalTextAlignment="Center"
+                            Text="No images available yet"
+                            TextColor="{AppThemeBinding Light={StaticResource violet_9_light},
+                                                        Dark={StaticResource purple_12_dark}}" />
+                        <Label
+                            Grid.Row="2"
+                            FontFamily="Roboto#400"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center"
+                            Text="There are no gallery photos for this breed right now."
+                            TextColor="{AppThemeBinding Light={StaticResource gray_12_light},
+                                                        Dark={StaticResource gray_12_dark}}" />
+                    </Grid>
+                </Border>
+
                 <CollectionView
                     Grid.Row="2"
                     ItemsSource="{Binding KittensByBreed}"
+                    IsVisible="{Binding HasNoKittens, Converter={StaticResource InvertBooleanConverter}}"
                     SelectionMode="None">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
@@ -75,17 +125,21 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Cat">
-                            <controls:MyBorder
+                            <Border
                                 BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
                                                                   Dark={StaticResource gray_4_dark}}"
-                                StrokeShape="{RoundRectangle CornerRadius='16,16,16,16'}"
+                                StrokeShape="RoundRectangle 16"
                                 StrokeThickness="0">
-                                <ffImageLoading:CachedImage
-                                    Aspect="AspectFill"
-                                    LoadingPlaceholder="icon_brand_bg.png"
-                                    Source="{Binding Url}"
-                                    WidthRequest="215" />
-                            </controls:MyBorder>
+                                <Grid WidthRequest="215">
+                                    <Image
+                                        Aspect="Center"
+                                        Opacity="0.25"
+                                        Source="icon_brand_bg.png" />
+                                    <Image
+                                        Aspect="AspectFill"
+                                        Source="{Binding Url}" />
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -104,7 +158,7 @@
                     Style="{StaticResource TxtCaption_1}"
                     Text="{Binding SelectedBreed.Description}" />
 
-                <controls:MyBorder
+                <Border
                     Grid.Row="10"
                     Padding="10"
                     BackgroundColor="Transparent"
@@ -112,7 +166,7 @@
                                              Dark={StaticResource purple_8_dark}}"
                     StrokeDashArray="3,2"
                     StrokeDashOffset="6"
-                    StrokeShape="{RoundRectangle CornerRadius='10,10,10,10'}"
+                    StrokeShape="RoundRectangle 10"
                     StrokeThickness="2">
                     <Grid
                         ColumnDefinitions="Auto, Auto"
@@ -171,7 +225,7 @@
                             Style="{StaticResource RatingViewStyle}"
                             Value="{Binding SelectedBreed.Dog_friendly}" />
                     </Grid>
-                </controls:MyBorder>
+                </Border>
 
                 <Grid
                     Grid.Row="1"
