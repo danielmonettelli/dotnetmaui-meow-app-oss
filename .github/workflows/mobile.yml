@@ -132,8 +132,8 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install .NET MAUI iOS Workload
-        run: dotnet workload install maui-ios
+      - name: Install .NET MAUI Workloads
+        run: dotnet workload install maui
 
       - name: Restore NuGet Packages
         run: dotnet restore Meow/Meow.csproj
@@ -157,8 +157,8 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install .NET MAUI MacCatalyst Workload
-        run: dotnet workload install maui-maccatalyst
+      - name: Install .NET MAUI Workloads
+        run: dotnet workload install maui
 
       - name: Restore NuGet Packages
         run: dotnet restore Meow/Meow.csproj
