@@ -58,10 +58,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          cache: true
 
-      - name: Restore Solution Dependencies
-        run: dotnet restore Meow/Meow.sln
+      - name: Restore Clean Architecture Layers & Test Dependencies
+        run: |
+          dotnet restore Meow.Infrastructure/Meow.Infrastructure.csproj
+          dotnet restore Meow.Tests/Meow.Tests.csproj
 
       - name: Build Clean Architecture Layers (Domain, Core, Infrastructure)
         run: |
@@ -87,7 +88,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          cache: true
 
       - name: Setup Java ${{ env.JAVA_VERSION }} (${{ env.JAVA_DISTRIBUTION }})
         uses: actions/setup-java@v4
@@ -131,7 +131,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          cache: true
 
       - name: Install .NET MAUI iOS Workload
         run: dotnet workload install maui-ios
@@ -157,7 +156,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          cache: true
 
       - name: Install .NET MAUI MacCatalyst Workload
         run: dotnet workload install maui-maccatalyst
@@ -183,7 +181,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          cache: true
 
       - name: Install .NET MAUI Windows Workload
         run: dotnet workload install maui-windows
