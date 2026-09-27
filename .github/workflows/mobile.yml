@@ -105,7 +105,7 @@ jobs:
         run: dotnet build Meow/Meow.csproj -f net10.0-android -c Release -p:UseSharedCompilation=false
 
       - name: Upload Android Build Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: success()
         with:
           name: android-app-release
