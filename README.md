@@ -1,153 +1,332 @@
 <p align="center">
-<a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss#gh-light-mode-only">
-<img width="300" src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/99e22ab94d88778b60963f06bae1405e7903625b/Assets/brand_light.svg#gh-light-mode-only">
-</a>
-<a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss#gh-dark-mode-only">
-<img width="300" src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/539401423b51b8a1cf9d5ea56e19a280f2217dcd/Assets/brand_dark.svg#gh-dark-mode-only">
-</a>
+  <a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss#gh-light-mode-only">
+    <img width="320" src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/brand_light.svg#gh-light-mode-only" alt="Meow Logo Light">
+  </a>
+  <a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss#gh-dark-mode-only">
+    <img width="320" src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/brand_dark.svg#gh-dark-mode-only" alt="Meow Logo Dark">
+  </a>
 </p>
+
 <p align="center">
-  <a href="https://app.codacy.com/gh/danielmonettelli/dotnetmaui-meow-app-oss/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade">
-  <img src="https://app.codacy.com/project/badge/Grade/3a130a6eae074e54b14b277d7617bff1" alt="Codacy Badge">
+  <strong>A modern, open-source .NET MAUI application built with .NET 10, Clean Architecture, and SOLID principles.</strong>
+</p>
+
+<p align="center">
+  <a href="https://dotnet.microsoft.com/en-us/apps/maui">
+    <img src="https://img.shields.io/badge/.NET%20MAUI-.NET%2010-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET MAUI .NET 10">
   </a>
   <a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/actions/workflows/mobile.yml">
-  <img src="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/actions/workflows/mobile.yml/badge.svg" alt=".NET MAUI CI">
+    <img src="https://img.shields.io/github/actions/workflow/status/danielmonettelli/dotnetmaui-meow-app-oss/mobile.yml?branch=main&style=for-the-badge&label=Build%20%26%20CI" alt="CI Status">
   </a>
-  <a href="CODE_OF_CONDUCT.md">
-    <img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Contributor Covenant">
+  <a href="https://play.google.com/store/apps/details?id=com.danielmonettelli.meow">
+    <img src="https://img.shields.io/badge/Google%20Play-Published-34A853?style=for-the-badge&logo=googleplay&logoColor=white" alt="Google Play Status">
   </a>
   <a href="LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License">
   </a>
 </p>
 
 <div align="center">
 
-[![Open Source ❤](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](#open-source-) [![Stars](https://img.shields.io/github/stars/danielmonettelli/dotnetmaui-meow-app-oss)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/stargazers) [![Forks](https://img.shields.io/github/forks/danielmonettelli/dotnetmaui-meow-app-oss)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/network/members) [![Pull Requests](https://img.shields.io/github/issues-pr/danielmonettelli/dotnetmaui-meow-app-oss)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/pulls) [![Issues](https://img.shields.io/github/issues/danielmonettelli/dotnetmaui-meow-app-oss)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/issues) [![Contributors](https://img.shields.io/github/contributors/danielmonettelli/dotnetmaui-meow-app-oss?color=2b9348)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/graphs/contributors)
+[![Stars](https://img.shields.io/github/stars/danielmonettelli/dotnetmaui-meow-app-oss?style=flat-square&color=ffd166)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/stargazers)
+[![Forks](https://img.shields.io/github/forks/danielmonettelli/dotnetmaui-meow-app-oss?style=flat-square&color=06d6a0)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/network/members)
+[![Issues](https://img.shields.io/github/issues/danielmonettelli/dotnetmaui-meow-app-oss?style=flat-square&color=118ab2)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/danielmonettelli/dotnetmaui-meow-app-oss?style=flat-square&color=8338ec)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/pulls)
+[![Contributors](https://img.shields.io/github/contributors/danielmonettelli/dotnetmaui-meow-app-oss?style=flat-square&color=ef476f)](https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/graphs/contributors)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3a130a6eae074e54b14b277d7617bff1)](https://app.codacy.com/gh/danielmonettelli/dotnetmaui-meow-app-oss/dashboard)
 
 </div>
 
-[![Main Cover](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/meow_main_cover.png)](#Main-Cover)
+<br>
 
-## Description
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.danielmonettelli.meow">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="75" alt="Get it on Google Play">
+  </a>
+</p>
 
-In this app, users can look at cute photos of different kittens. 🐈
+<p align="center">
+  👉 <strong><a href="https://play.google.com/store/apps/details?id=com.danielmonettelli.meow">Download Meow on Google Play Store</a></strong>
+</p>
 
-	
-## Table of Contents
-		
-- [Description](#description)
-- [Table of Contents](#table-of-contents)
-- [Instructions](#instructions)
-- [Features](#features)
-- [Supported platforms](#supported-platforms)
-- [Design tool](#design-tool)
-- [Publications](#publications)
-- [👥 Special collaborator](#-special-collaborator)
-- [👥 Contributors](#-contributors)
-- [Steps to contribute](#steps-to-contribute)
-- [MIT License](#mit-license)
-- [Open Source ❤](#open-source-)
+---
 
-## Instructions
+<p align="center">
+  <img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/meow_main_cover.png" alt="Meow Cover Banner" width="100%">
+</p>
 
-Before running the application, it is necessary to obtain a **API-KEY**. To do this, visit the website https://thecatapi.com/ and click the `GET YOUR API KEY` button.
+## 📖 Table of Contents
 
-![thecatapi part 1](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_1_updated.png)
+- [About The Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Architecture & SOLID Principles](#-architecture--solid-principles)
+- [Technology Stack](#-technology-stack)
+- [Supported Platforms](#-supported-platforms)
+- [Getting Started](#-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Obtaining a TheCatAPI Key](#obtaining-a-thecatapi-key)
+  - [Configuring the API Key](#configuring-the-api-key)
+  - [Build and Run](#build-and-run)
+  - [Running Unit Tests](#running-unit-tests)
+- [Design Tool](#-design-tool)
+- [Team & Contributors](#-team--contributors)
+- [How to Contribute](#-how-to-contribute)
+- [License](#-license)
 
-Then choose the **FREE** section and click `GET FREE ACCESS`.
+---
 
-![thecatapi part 2](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_2_updated.png)
+## 🐾 About The Project
 
-Then provide your email address and explain why you want to use this API key. Select `A PERSONAL PROJECT` and finally, click on the `SUBMIT` button. You will receive an email with the **API-KEY** at the address you provided.
+**Meow** is a production-ready, open-source multi-platform application designed for cat lovers. Built from the ground up targeting **.NET 10** and **.NET MAUI**, it demonstrates how to architect a modern, enterprise-grade mobile application using **100% native .NET MAUI controls** (with zero third-party UI dependencies).
 
-![thecatapi part 3](https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_3_updated.png)
+The application connects to [TheCatAPI](https://thecatapi.com/) to deliver an infinite stream of cute feline photos, complete breed encyclopedias, and personal favorite collections with an **offline-first** caching strategy.
 
-Now, locate the `APIConstants` class, copy the **API-KEY** and paste it into the field designated as `THECAT_API_KEY_HERE`. With this, you are ready to run the application.
+---
+
+## ✨ Key Features
+
+- **🗳️ Vote & Discover**:
+  - Infinite feed of random high-definition cat pictures.
+  - Interactive double-tap and tap-to-favorite gesture interactions.
+  - Custom native heart confetti animation burst when expressing love for a kitten.
+  - Separate "Love It" and "Nope It" discovery navigation buttons.
+  - Instant floating badge indicating current favorite status.
+
+- **📖 Breeds Encyclopedia**:
+  - Comprehensive catalog of domestic cat breeds with origin, description, and personality temperament tags.
+  - **Dynamic Paw-Print Rating System**: Custom-engineered vector rating control powered by `Microsoft.Maui.Graphics` that visibly fills paw prints for core traits (*Affection Level*, *Adaptability*, *Child Friendly*, and *Dog Friendly*).
+  - High-resolution gallery per breed with graceful empty-state handling for breeds without current photos.
+
+- **⭐ Offline-First Favorites**:
+  - Saved favorites collection powered by local SQLite caching.
+  - Automatic synchronization and fallback resilience when offline.
+  - High-performance, 60 FPS smooth scrolling CollectionView.
+
+- **🎨 Tailored UI/UX & Theming**:
+  - Native **Dark Mode** and **Light Mode** adaptive themes.
+  - Responsive **AppShell** tab navigation.
+  - Clean vector iconography and typography.
+
+---
+
+## 🏛️ Architecture & SOLID Principles
+
+The solution strictly adheres to **Clean Architecture** (Uncle Bob) to enforce decoupling between business rules, data access, and presentation frameworks:
+
+```
+Meow/
+├── Meow.Domain/          # Enterprise Business Rules (Pure Entities, no dependencies)
+├── Meow.Core/            # Application Business Rules (Use Cases & Repository Interfaces)
+├── Meow.Infrastructure/  # Data Access (TheCatAPI Service, SQLite Repositories, Offline Sync)
+├── Meow/                 # Presentation Layer (XAML, ViewModels, Custom Controls, AppShell)
+└── Meow.Tests/           # Unit Tests (158 Tests covering Domain, Core, ViewModels, Graphics)
+```
+
+### Clean Architecture Layers
+
+1. **`Meow.Domain`**
+   - Contains core domain entities: `Cat`, `Breed`, `UserFavorite`, `Category`.
+   - Zero external dependencies; pure C# and .NET 10.
+2. **`Meow.Core`**
+   - Application use cases: `GetVotingCatsUseCase`, `GetBreedsUseCase`, `GetCatsByBreedUseCase`, `ManageFavoritesUseCase`, `CacheMaintenanceUseCase`.
+   - Repository interfaces and contracts (`ICatApiService`, `ICatCacheRepository`, `IBreedCacheRepository`, `IFavoriteRepository`).
+3. **`Meow.Infrastructure`**
+   - Implementation of external concerns: HTTP API Client (`CatApiService`), SQLite database tables, and offline caching logic (`CatCacheRepository`, `FavoriteRepository`).
+   - Implements `IConnectivityProvider` and `IDatabasePathProvider`.
+4. **`Meow` (Presentation & UI)**
+   - .NET MAUI UI with MVVM pattern powered by `CommunityToolkit.Mvvm`.
+   - AppShell structure, custom controls (`RatingView`, `RatingCanvas`), and adaptive theme dictionaries (`Colors.xaml`, `Global.xaml`).
+5. **`Meow.Tests`**
+   - 158 automated unit tests built with xUnit v3, FluentAssertions, Moq, and Microsoft.Testing.Platform.
+
+### SOLID Principles in Action
+
+| Principle | Implementation in Meow |
+| :--- | :--- |
+| **S - Single Responsibility** | Every Use Case executes a single business operation (e.g. `ManageFavoritesUseCase` only orchestrates favoriting logic). |
+| **O - Open / Closed** | Repositories and caching strategies are easily extensible via interfaces without altering use case consumers. |
+| **L - Liskov Substitution** | Platform abstractions (like database paths or network connectivity) can be substituted seamlessly between test mocks and mobile targets. |
+| **I - Interface Segregation** | Fine-grained contracts (`IFavoriteRepository`, `ICatCacheRepository`, `IBreedCacheRepository`) ensure classes only implement what they use. |
+| **D - Dependency Inversion** | High-level Use Cases depend strictly on domain abstractions; concrete SQLite and HTTP clients are injected at startup via Microsoft.Extensions.DependencyInjection. |
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: [.NET 10](https://dotnet.microsoft.com/) & [.NET MAUI](https://learn.microsoft.com/dotnet/maui/)
+- **Language**: C# 14
+- **Architecture**: Clean Architecture + SOLID + MVVM
+- **State & MVVM**: [CommunityToolkit.Mvvm](https://learn.microsoft.com/dotnet/communitytoolkit/mvvm/)
+- **Graphics Engine**: `Microsoft.Maui.Graphics` (Custom hardware-accelerated 2D vector drawing)
+- **Local Persistence**: [sqlite-net-pcl](https://github.com/praeclarum/sqlite-net) + SQLitePCLRaw
+- **Testing**: xUnit v3, Microsoft.Testing.Platform, FluentAssertions, Moq
+- **API**: [TheCatAPI](https://thecatapi.com/)
+- **CI/CD**: GitHub Actions (Multi-platform automated build & Clean Architecture test quality gate)
+
+---
+
+## 📱 Supported Platforms
+
+| Platform | Support | Architecture |
+| :--- | :---: | :--- |
+| **Android** | ✔️ Supported | API 21+ (Android 5.0 through Android 15+) |
+| **iOS** | ✔️ Supported | iOS 15.0+ |
+| **macOS (Mac Catalyst)** | ✔️ Supported | macOS 12.0+ (Apple Silicon & Intel) |
+| **Windows** | ✔️ Supported | Windows 10 (Build 17763) & Windows 11 |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) (Version 10.0.100 or higher)
+- .NET MAUI Workloads:
+  ```bash
+  dotnet workload install maui
+  # Or install specific platform workloads:
+  dotnet workload install maui-android maui-ios maui-maccatalyst maui-windows
+  ```
+- Visual Studio 2026 / Visual Studio Code with the [.NET MAUI Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-maui).
+
+### Obtaining a TheCatAPI Key
+
+The app requires an API key from [TheCatAPI](https://thecatapi.com/):
+
+1. Go to [https://thecatapi.com/](https://thecatapi.com/) and click **`GET YOUR API KEY`**.
+   <br><img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_1_updated.png" width="450" alt="TheCatAPI Step 1">
+
+2. Select the **`FREE`** tier and click **`GET FREE ACCESS`**.
+   <br><img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_2_updated.png" width="450" alt="TheCatAPI Step 2">
+
+3. Provide your email, choose `A PERSONAL PROJECT`, and submit. Your API key will be delivered to your inbox.
+   <br><img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/thecatapi_part_3_updated.png" width="450" alt="TheCatAPI Step 3">
+
+### Configuring the API Key
+
+Open `Meow.Infrastructure/Api/ApiConstants.cs` and paste your API key:
 
 ```csharp
-namespace Meow.Constants;
+namespace Meow.Infrastructure.Api;
 
-public static class APIConstants
+public static class ApiConstants
 {
-    public const string APIBaseUrl = "https://api.thecatapi.com/v1/";
-    public const string APIKey = "THECAT_API_KEY_HERE";
-
-    // ...
+    public const string BaseUrl = "https://api.thecatapi.com/v1/";
+    public const string ApiKey = "YOUR_API_KEY_HERE";
 }
 ```
 
-## Features
-		
-* Cat image generation (Hi-res images)
-* Video Streams
-* Detailed breed information
-* Cat facts
-* Medical data
+### Build and Run
 
-## Supported platforms
+To run the application on Android:
+```bash
+dotnet build Meow/Meow.csproj -t:Run -f net10.0-android
+```
 
-|            | [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/dotnetmaui.png" width="150">](#dotnetmaui) |
-| -------------------------- | :----------------: |
-| [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/android.png" width="100">](#android) |         ✔️         |
-| [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/ios.png" width="100">](#iOS) |         ✔️         |
-| [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/windows.png" width="100">](#windows) |         ✔️         |
-| [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/main/Assets/macos.png" width="100">](#macos) |         ✔️         |
+To run on Windows:
+```bash
+dotnet build Meow/Meow.csproj -t:Run -f net10.0-windows10.0.19041.0
+```
 
-## Design tool
+To run on macOS (Mac Catalyst):
+```bash
+dotnet build Meow/Meow.csproj -t:Run -f net10.0-maccatalyst
+```
 
-| [<img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/99e22ab94d88778b60963f06bae1405e7903625b/Assets/figma.png" width="90">](https://www.figma.com/) |
-| -------------------------- |
+### Running Unit Tests
 
-## Publications
+Execute the comprehensive test suite (158 tests) across Domain, Core, ViewModels, and Controls:
+```bash
+dotnet test Meow.Tests/Meow.Tests.csproj -c Release
+```
 
-- Coming soon...
+---
 
-## 👥 Special collaborator
+## 🎨 Design Tool
 
-| [<img src="https://avatars.githubusercontent.com/u/25359161?v=4" width="150">](https://github.com/BryanOroxon) |
-:---------------------------------------------:|
-| **Bryan Oroxón** |
+The UI and UX of Meow were conceived and designed in [Figma](https://www.figma.com/):
 
-## 👥 Contributors
+<p align="left">
+  <a href="https://www.figma.com/">
+    <img src="https://raw.githubusercontent.com/danielmonettelli/dotnetmaui-meow-app-oss/99e22ab94d88778b60963f06bae1405e7903625b/Assets/figma.png" width="80" alt="Figma Design">
+  </a>
+</p>
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
+---
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+## 👥 Team & Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+### Creator & Lead Architect
 
-## Steps to contribute
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/danielmonettelli">
+        <img src="https://avatars.githubusercontent.com/u/14121125?v=4" width="120px;" style="border-radius:50%;" alt="Daniel Monettelli"/><br />
+        <sub><b>Daniel Monettelli</b></sub>
+      </a><br />
+      <sub>Creator, UI/UX Designer & Lead Engineer</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/BryanOroxon">
+        <img src="https://avatars.githubusercontent.com/u/25359161?v=4" width="120px;" style="border-radius:50%;" alt="Bryan Oroxón"/><br />
+        <sub><b>Bryan Oroxón</b></sub>
+      </a><br />
+      <sub>Special Collaborator & Software Developer</sub>
+    </td>
+  </tr>
+</table>
 
-1. Fork the repo using the fork button on GitHub.
+### Open Source Contributors
 
-2. Clone the repo by clicking the green "Code" button and copying the HTTPS link: `https://github.com/danielmonettelli/dotnetmaui-meow-app-oss.git`.
+A huge thank you to everyone who has contributed to making **Meow** better!
 
-3. To create a new branch, start by navigating to your cloned copy of `dotnetmaui-meow-app-oss`. 
+<p align="center">
+  <a href="https://github.com/danielmonettelli/dotnetmaui-meow-app-oss/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=danielmonettelli/dotnetmaui-meow-app-oss" alt="Meow Contributors" />
+  </a>
+</p>
 
-4. To create a new branch off of the main branch, run `git checkout main`.
+---
 
-5. To create your new branch, run `git branch <your branch>` and then `git checkout <your branch>` to switch to "new-branch".
+## 🤝 How to Contribute
 
-6. You can now make your contributions here.
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**!
 
-7. If you are done editing, you can then stage your changed files by running `git add name_of_your_file` or run `git add .` to stage all files that you have modified.
+1. **Fork the Repository** on GitHub.
+2. **Clone your fork**:
+   ```bash
+   git clone https://github.com/<your-username>/dotnetmaui-meow-app-oss.git
+   ```
+3. **Create a Feature Branch**:
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+4. **Make your changes** and adhere to Clean Architecture & SOLID conventions.
+5. **Verify all tests pass**:
+   ```bash
+   dotnet test Meow.Tests/Meow.Tests.csproj -c Release
+   ```
+6. **Commit your changes**:
+   ```bash
+   git commit -m "feat: Add amazing feature"
+   ```
+7. **Push to your branch**:
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+8. **Open a Pull Request** against the `main` branch.
 
-8. To commit your contributions, run `git commit -m "message"`, where message explains the changes made.
+---
 
-9. Run `git push origin <your branch>` to push your changes.
+## 📄 License
 
-10. Lastly, create a pull request by going to your forked repo and clicking "Compare & pull request", then clicking "Create pull request".
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-11. See if your changes were added! 
-
-## MIT License
-
+```
 Copyright (c) Daniel Monettelli
+```
 
-## Open Source ❤
-
-It is with humility and gratitude that I offer my open source contribution to the .NET MAUI community, hoping to share a modest grain of wisdom. If you decide to use this project, please feel free to acknowledge the designer's work, contributions and dedication of all contributors involved.
+<p align="center">
+  Made with ❤️ for cats and the .NET MAUI community.
+</p>
