@@ -1,0 +1,11 @@
+global using System.Text;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using SQLite;
+global using Meow.Domain.Entities;
+global using Meow.Domain.Interfaces;
+global using Meow.Core.Common;
+global using Meow.Core.UseCases;
+global using Meow.Infrastructure.Api;
+global using Meow.Infrastructure.Persistence;
+global using Meow.Infrastructure.Persistence.Entities;
