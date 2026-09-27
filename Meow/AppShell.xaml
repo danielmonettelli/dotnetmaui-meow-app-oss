@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:mctcore="clr-namespace:CommunityToolkit.Maui.Core;assembly=CommunityToolkit.Maui.Core"
     xmlns:view="clr-namespace:Meow.Views"
     Shell.FlyoutBehavior="Disabled">
 
@@ -11,8 +12,8 @@
         <mct:StatusBarBehavior
             StatusBarColor="{AppThemeBinding Light='White',
                                              Dark='#141414'}"
-            StatusBarStyle="{AppThemeBinding Light='DarkContent',
-                                             Dark='LightContent'}" />
+            StatusBarStyle="{AppThemeBinding Light={x:Static mctcore:StatusBarStyle.DarkContent},
+                                             Dark={x:Static mctcore:StatusBarStyle.LightContent}}" />
     </Shell.Behaviors>
 
     <TabBar>

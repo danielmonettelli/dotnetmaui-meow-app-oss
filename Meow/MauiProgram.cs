@@ -1,4 +1,4 @@
-﻿namespace Meow;
+namespace Meow;
 
 public static class MauiProgram
 {
@@ -7,10 +7,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .UseSkiaSharp()
-            .UseFFImageLoading()
             .UseMauiCommunityToolkit()
-            .UseMaterialComponents()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("Roboto-Regular.ttf", "Roboto#400");
@@ -18,19 +15,46 @@ public static class MauiProgram
                 fonts.AddFont("Roboto-Bold.ttf", "Roboto#700");
             });
 
-        builder.Services.AddSingleton<ICatService, CatService>();
-        builder.Services.AddSingleton<ICacheService, CacheService>();
-        builder.Services.AddSingleton<BackgroundSyncService>();
-        builder.Services.AddSingleton<ConnectivityService>();
+        // Infrastructure - Platform Services (SOLID: Dependency Inversion)
+        builder.Services.AddSingleton<IDatabasePathProvider, MauiDatabasePathProvider>();
+        builder.Services.AddSingleton<IConnectivityProvider, MauiConnectivityProvider>();
 
+        // Infrastructure - HTTP Client
+        builder.Services.AddHttpClient<ICatApiService, CatApiService>(client =>
+        {
+            client.BaseAddress = new Uri(ApiConstants.BaseUrl);
+            client.DefaultRequestHeaders.Add("x-api-key", ApiConstants.ApiKey);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.Timeout = TimeSpan.FromSeconds(15);
+        });
+
+        // Infrastructure - Repositories
+        builder.Services.AddSingleton<ICatCacheRepository, CatCacheRepository>();
+        builder.Services.AddSingleton<IBreedCacheRepository, BreedCacheRepository>();
+        builder.Services.AddSingleton<IFavoriteRepository, FavoriteRepository>();
+
+        // Application - Use Cases
+        builder.Services.AddTransient<GetVotingCatsUseCase>();
+        builder.Services.AddTransient<GetBreedsUseCase>();
+        builder.Services.AddTransient<GetCatsByBreedUseCase>();
+        builder.Services.AddTransient<ManageFavoritesUseCase>();
+        builder.Services.AddTransient<CacheMaintenanceUseCase>();
+
+        // Infrastructure - Background Services
+        builder.Services.AddSingleton<BackgroundSyncService>();
+
+        // Navigation Shell
+        builder.Services.AddSingleton<AppShell>();
+
+        // Presentation - ViewModels & Pages (Singletons for root TabBar pages)
         builder.Services.AddSingleton<VoteViewModel>();
-        builder.Services.AddTransient<VotePage>();
+        builder.Services.AddSingleton<VotePage>();
 
         builder.Services.AddSingleton<BreedsViewModel>();
-        builder.Services.AddTransient<BreedsPage>();
+        builder.Services.AddSingleton<BreedsPage>();
 
         builder.Services.AddSingleton<FavoriteViewModel>();
-        builder.Services.AddTransient<FavoritePage>();
+        builder.Services.AddSingleton<FavoritePage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

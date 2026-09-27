@@ -1,29 +1,32 @@
-﻿namespace Meow;
+namespace Meow;
 
 public partial class App : Application
 {
-    private BackgroundSyncService _backgroundSyncService;
+    private readonly BackgroundSyncService _backgroundSyncService;
+    private readonly IServiceProvider _serviceProvider;
 
-    public App(BackgroundSyncService backgroundSyncService)
+    public App(BackgroundSyncService backgroundSyncService, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         _backgroundSyncService = backgroundSyncService;
+        _serviceProvider = serviceProvider;
     }
 
-    protected override Window CreateWindow(IActivationState activationState)
+    protected override Window CreateWindow(IActivationState? activationState)
     {
         // Start background sync service when app starts
         _backgroundSyncService?.Start();
 
-        var window = new Window(new AppShell());
+        var shell = _serviceProvider.GetRequiredService<AppShell>();
+        var window = new Window(shell);
         
         // Force portrait orientation
         window.Created += (s, e) =>
         {
 #if ANDROID
-            if (Platform.CurrentActivity != null)
+            if (Microsoft.Maui.ApplicationModel.Platform.CurrentActivity != null)
             {
-                Platform.CurrentActivity.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+                Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
             }
 #endif
         };

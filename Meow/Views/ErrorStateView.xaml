@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Meow.Views.ErrorStateView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Border
+        Padding="32,40"
+        BackgroundColor="{AppThemeBinding Light={StaticResource gray_4_light},
+                                          Dark={StaticResource gray_4_dark}}"
+        StrokeShape="RoundRectangle 16"
+        StrokeThickness="0">
+
+        <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+
+            <!--  Decorative circle with cat brand  -->
+            <Border
+                BackgroundColor="{AppThemeBinding Light={StaticResource violet_9_light},
+                                                  Dark={StaticResource purple_3_dark}}"
+                HeightRequest="110"
+                HorizontalOptions="Center"
+                StrokeShape="RoundRectangle 55"
+                StrokeThickness="0"
+                WidthRequest="110">
+                <Grid>
+                    <Image
+                        HeightRequest="56"
+                        HorizontalOptions="Center"
+                        Opacity="0.85"
+                        Source="icon_brand_bg.png"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <BoxView HeightRequest="20" Color="Transparent" />
+
+            <!--  Offline indicator pill  -->
+            <Border
+                x:Name="OfflinePill"
+                Padding="16,6"
+                BackgroundColor="{AppThemeBinding Light='#EDE7F6',
+                                                  Dark='#30133B'}"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                StrokeShape="RoundRectangle 12"
+                StrokeThickness="0">
+                <Label
+                    FontFamily="Roboto#500"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"
+                    Text="OFFLINE"
+                    TextColor="{AppThemeBinding Light={StaticResource violet_9_light},
+                                                Dark={StaticResource purple_8_dark}}" />
+            </Border>
+
+            <!--  Error indicator pill  -->
+            <Border
+                x:Name="ErrorPill"
+                Padding="16,6"
+                BackgroundColor="{AppThemeBinding Light='#FFEBEE',
+                                                  Dark='#3B1313'}"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                StrokeShape="RoundRectangle 12"
+                StrokeThickness="0">
+                <Label
+                    FontFamily="Roboto#500"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"
+                    Text="API ERROR"
+                    TextColor="#e15050" />
+            </Border>
+
+            <BoxView HeightRequest="16" Color="Transparent" />
+
+            <!--  Title  -->
+            <Label
+                x:Name="TitleLabel"
+                FontFamily="Roboto#700"
+                FontSize="22"
+                HorizontalTextAlignment="Center"
+                Text="Oops! No Connection"
+                TextColor="{AppThemeBinding Light={StaticResource gray_12_light},
+                                            Dark={StaticResource gray_12_dark}}" />
+
+            <BoxView HeightRequest="10" Color="Transparent" />
+
+            <!--  Description  -->
+            <Label
+                x:Name="DescriptionLabel"
+                FontFamily="Roboto#400"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaximumWidthRequest="280"
+                Opacity="0.65"
+                Text="It looks like you're not connected to the internet. Please check your connection and try again to see adorable cats!"
+                TextColor="{AppThemeBinding Light={StaticResource gray_12_light},
+                                            Dark={StaticResource gray_12_dark}}" />
+
+            <BoxView HeightRequest="28" Color="Transparent" />
+
+            <!--  Retry button  -->
+            <Button
+                x:Name="RetryButton"
+                BackgroundColor="{AppThemeBinding Light={StaticResource violet_9_light},
+                                                 Dark={StaticResource purple_9_dark}}"
+                CornerRadius="24"
+                FontAttributes="Bold"
+                FontSize="16"
+                HeightRequest="48"
+                HorizontalOptions="Center"
+                Text="&#x1F504;  TRY AGAIN"
+                TextColor="White"
+                WidthRequest="200" />
+
+        </VerticalStackLayout>
+    </Border>
+</ContentView>
