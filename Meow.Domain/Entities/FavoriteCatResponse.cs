@@ -1,3 +1,5 @@
+using Meow.Domain.Converters;
+
 namespace Meow.Domain.Entities;
 
 /// <summary>
@@ -6,15 +8,18 @@ namespace Meow.Domain.Entities;
 public class FavoriteCatResponse
 {
     [JsonPropertyName("id")]
+    [JsonConverter(typeof(NumberOrStringConverter))]
     public string? Id { get; set; }
 
     [JsonPropertyName("user_id")]
+    [JsonConverter(typeof(NumberOrStringConverter))]
     public string? User_id { get; set; }
 
     [JsonPropertyName("image_id")]
     public string? Image_id { get; set; }
 
     [JsonPropertyName("sub_id")]
+    [JsonConverter(typeof(NumberOrStringConverter))]
     public string? Sub_id { get; set; }
 
     [JsonPropertyName("created_at")]

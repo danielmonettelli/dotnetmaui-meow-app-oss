@@ -18,6 +18,7 @@ public static class MauiProgram
         // Infrastructure - Platform Services (SOLID: Dependency Inversion)
         builder.Services.AddSingleton<IDatabasePathProvider, MauiDatabasePathProvider>();
         builder.Services.AddSingleton<IConnectivityProvider, MauiConnectivityProvider>();
+        builder.Services.AddSingleton<IUserIdentifierProvider, MauiUserIdentifierProvider>();
 
         // Infrastructure - HTTP Client
         builder.Services.AddHttpClient<ICatApiService, CatApiService>(client =>

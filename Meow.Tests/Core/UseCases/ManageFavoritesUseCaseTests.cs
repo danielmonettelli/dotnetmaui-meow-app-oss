@@ -47,6 +47,23 @@ public class ManageFavoritesUseCaseTests
     }
 
     [Fact]
+    public async Task GetFavoritesAsync_WhenFreshInstall_ShouldReturnEmptyFavorites()
+    {
+        // Arrange: fresh install with no prior favorites
+        _mockConnectivity.Setup(c => c.IsConnected).Returns(true);
+        _mockRepo.Setup(r => r.SyncFavoritesAsync(_mockApi.Object)).ReturnsAsync(true);
+        _mockRepo.Setup(r => r.GetUserFavoritesAsync()).ReturnsAsync(new List<FavoriteCatResponse>());
+
+        // Act
+        var result = await _sut.GetFavoritesAsync();
+
+        // Assert
+        result.IsSuccess.Should().BeTrue();
+        result.Data.Should().BeEmpty();
+        _mockRepo.Verify(r => r.SyncFavoritesAsync(_mockApi.Object), Times.Once);
+    }
+
+    [Fact]
     public async Task GetFavoritesAsync_WhenOffline_ShouldReturnCachedFavorites()
     {
         // Arrange

@@ -5,17 +5,38 @@ namespace Meow.Infrastructure.Persistence.Repositories;
 /// </summary>
 public class FavoriteRepository : BaseRepository, IFavoriteRepository
 {
-    public FavoriteRepository(IDatabasePathProvider pathProvider) : base(pathProvider) { }
+    private readonly IUserIdentifierProvider? _userIdentifierProvider;
+
+    public FavoriteRepository(
+        IDatabasePathProvider pathProvider,
+        IUserIdentifierProvider? userIdentifierProvider = null) : base(pathProvider)
+    {
+        _userIdentifierProvider = userIdentifierProvider;
+    }
 
     public async Task<List<FavoriteCatResponse>> GetUserFavoritesAsync()
     {
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            var favorites = await database.Table<UserFavoriteEntity>()
-                .Where(f => !f.IsPendingDeletion)
-                .OrderByDescending(f => f.AddedAt)
-                .ToListAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            List<UserFavoriteEntity> favorites;
+            if (!string.IsNullOrEmpty(userId))
+            {
+                favorites = await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.UserId == userId && !f.IsPendingDeletion)
+                    .OrderByDescending(f => f.AddedAt)
+                    .ToListAsync();
+            }
+            else
+            {
+                favorites = await database.Table<UserFavoriteEntity>()
+                    .Where(f => !f.IsPendingDeletion)
+                    .OrderByDescending(f => f.AddedAt)
+                    .ToListAsync();
+            }
+
             return favorites.Select(f => f.ToFavoriteCatResponse()).ToList();
         }, new List<FavoriteCatResponse>());
     }
@@ -25,13 +46,19 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            var existing = await database.Table<UserFavoriteEntity>()
-                .Where(f => f.ImageId == cat.Id && !f.IsPendingDeletion)
-                .FirstOrDefaultAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            var existing = !string.IsNullOrEmpty(userId)
+                ? await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == cat.Id && f.UserId == userId && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync()
+                : await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == cat.Id && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync();
 
             if (existing != null) return false;
 
-            await database.InsertAsync(UserFavoriteEntity.FromCat(cat));
+            await database.InsertAsync(UserFavoriteEntity.FromCat(cat, userId));
             return true;
         }, false);
     }
@@ -41,9 +68,15 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            var favorite = await database.Table<UserFavoriteEntity>()
-                .Where(f => f.ImageId == imageId && !f.IsPendingDeletion)
-                .FirstOrDefaultAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            var favorite = !string.IsNullOrEmpty(userId)
+                ? await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == imageId && f.UserId == userId && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync()
+                : await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == imageId && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync();
 
             if (favorite == null) return false;
 
@@ -65,9 +98,16 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            var favorite = await database.Table<UserFavoriteEntity>()
-                .Where(f => f.ImageId == imageId && !f.IsPendingDeletion)
-                .FirstOrDefaultAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            var favorite = !string.IsNullOrEmpty(userId)
+                ? await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == imageId && f.UserId == userId && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync()
+                : await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.ImageId == imageId && !f.IsPendingDeletion)
+                    .FirstOrDefaultAsync();
+
             return favorite != null;
         }, false);
     }
@@ -77,16 +117,23 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
 
-            // Get server favorites
-            var serverFavorites = await catApiService.GetFavoritesAsync();
-            if (serverFavorites != null)
+            // Clean up any legacy or orphaned favorites from older installs or different user IDs
+            if (!string.IsNullOrEmpty(userId))
             {
-                await SyncServerFavoritesAsync(database, serverFavorites);
+                await PurgeOrphanedFavoritesAsync(database, userId);
             }
 
-            await PushLocalFavoritesAsync(database, catApiService);
-            await HandlePendingDeletionsAsync(database, catApiService);
+            // Get server favorites segmented by sub_id
+            var serverFavorites = await catApiService.GetFavoritesAsync(userId);
+            if (serverFavorites != null)
+            {
+                await SyncServerFavoritesAsync(database, serverFavorites, userId);
+            }
+
+            await PushLocalFavoritesAsync(database, catApiService, userId);
+            await HandlePendingDeletionsAsync(database, catApiService, userId);
 
             return true;
         }, false);
@@ -97,9 +144,15 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         return await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            return await database.Table<UserFavoriteEntity>()
-                .Where(f => !f.IsSynced || f.IsPendingDeletion)
-                .CountAsync();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            return !string.IsNullOrEmpty(userId)
+                ? await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.UserId == userId && (!f.IsSynced || f.IsPendingDeletion))
+                    .CountAsync()
+                : await database.Table<UserFavoriteEntity>()
+                    .Where(f => !f.IsSynced || f.IsPendingDeletion)
+                    .CountAsync();
         }, 0);
     }
 
@@ -108,22 +161,43 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         await ExecuteSafelyAsync(async () =>
         {
             var database = await GetDatabaseAsync();
-            await database.DeleteAllAsync<UserFavoriteEntity>();
+            var userId = _userIdentifierProvider?.GetUserIdentifier();
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                await database.ExecuteAsync("DELETE FROM UserFavorites WHERE UserId = ?", userId);
+            }
+            else
+            {
+                await database.DeleteAllAsync<UserFavoriteEntity>();
+            }
             return true;
         }, false);
     }
 
-    private async Task SyncServerFavoritesAsync(SQLiteAsyncConnection database, List<FavoriteCatResponse> serverFavorites)
+    private async Task PurgeOrphanedFavoritesAsync(SQLiteAsyncConnection database, string currentUserId)
+    {
+        await database.ExecuteAsync("DELETE FROM UserFavorites WHERE UserId != ? OR UserId IS NULL", currentUserId);
+    }
+
+    private async Task SyncServerFavoritesAsync(
+        SQLiteAsyncConnection database,
+        List<FavoriteCatResponse> serverFavorites,
+        string? userId)
     {
         foreach (var serverFav in serverFavorites)
         {
-            var local = await database.Table<UserFavoriteEntity>()
-                .Where(f => f.FavoriteId == serverFav.Id)
-                .FirstOrDefaultAsync();
+            var local = !string.IsNullOrEmpty(userId)
+                ? await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.FavoriteId == serverFav.Id && f.UserId == userId)
+                    .FirstOrDefaultAsync()
+                : await database.Table<UserFavoriteEntity>()
+                    .Where(f => f.FavoriteId == serverFav.Id)
+                    .FirstOrDefaultAsync();
 
             if (local == null)
             {
-                await database.InsertAsync(UserFavoriteEntity.FromFavoriteCatResponse(serverFav));
+                await database.InsertAsync(UserFavoriteEntity.FromFavoriteCatResponse(serverFav, userId));
             }
             else if (!local.IsPendingDeletion)
             {
@@ -134,17 +208,24 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         }
     }
 
-    private async Task PushLocalFavoritesAsync(SQLiteAsyncConnection database, ICatApiService catApiService)
+    private async Task PushLocalFavoritesAsync(
+        SQLiteAsyncConnection database,
+        ICatApiService catApiService,
+        string? userId)
     {
-        var unsynced = await database.Table<UserFavoriteEntity>()
-            .Where(f => !f.IsSynced && !f.IsPendingDeletion)
-            .ToListAsync();
+        var unsynced = !string.IsNullOrEmpty(userId)
+            ? await database.Table<UserFavoriteEntity>()
+                .Where(f => f.UserId == userId && !f.IsSynced && !f.IsPendingDeletion)
+                .ToListAsync()
+            : await database.Table<UserFavoriteEntity>()
+                .Where(f => !f.IsSynced && !f.IsPendingDeletion)
+                .ToListAsync();
 
         foreach (var fav in unsynced)
         {
             try
             {
-                var response = await catApiService.AddFavoriteAsync(fav.ImageId);
+                var response = await catApiService.AddFavoriteAsync(fav.ImageId, userId);
                 if (!string.IsNullOrEmpty(response))
                 {
                     var parsed = JsonSerializer.Deserialize<Dictionary<string, object>>(response);
@@ -166,11 +247,18 @@ public class FavoriteRepository : BaseRepository, IFavoriteRepository
         }
     }
 
-    private async Task HandlePendingDeletionsAsync(SQLiteAsyncConnection database, ICatApiService catApiService)
+    private async Task HandlePendingDeletionsAsync(
+        SQLiteAsyncConnection database,
+        ICatApiService catApiService,
+        string? userId)
     {
-        var pending = await database.Table<UserFavoriteEntity>()
-            .Where(f => f.IsPendingDeletion && f.FavoriteId != null && f.FavoriteId != "")
-            .ToListAsync();
+        var pending = !string.IsNullOrEmpty(userId)
+            ? await database.Table<UserFavoriteEntity>()
+                .Where(f => f.UserId == userId && f.IsPendingDeletion && f.FavoriteId != null && f.FavoriteId != "")
+                .ToListAsync()
+            : await database.Table<UserFavoriteEntity>()
+                .Where(f => f.IsPendingDeletion && f.FavoriteId != null && f.FavoriteId != "")
+                .ToListAsync();
 
         foreach (var fav in pending)
         {

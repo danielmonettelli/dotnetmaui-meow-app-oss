@@ -77,11 +77,15 @@ public class CatApiService : ICatApiService
         }
     }
 
-    public async Task<List<FavoriteCatResponse>?> GetFavoritesAsync()
+    public async Task<List<FavoriteCatResponse>?> GetFavoritesAsync(string? subId = null)
     {
         try
         {
-            var response = await _httpClient.GetAsync(ApiConstants.FavoritesEndpoint);
+            var endpoint = string.IsNullOrWhiteSpace(subId)
+                ? ApiConstants.FavoritesEndpoint
+                : $"{ApiConstants.FavoritesEndpoint}?sub_id={Uri.EscapeDataString(subId)}";
+
+            var response = await _httpClient.GetAsync(endpoint);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -96,11 +100,15 @@ public class CatApiService : ICatApiService
         }
     }
 
-    public async Task<string?> AddFavoriteAsync(string imageId)
+    public async Task<string?> AddFavoriteAsync(string imageId, string? subId = null)
     {
         try
         {
-            var request = new FavoriteCatRequest { Image_id = imageId };
+            var request = new FavoriteCatRequest
+            {
+                Image_id = imageId,
+                Sub_id = subId
+            };
             var body = JsonSerializer.Serialize(request);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(ApiConstants.FavoritesEndpoint, content);
@@ -132,12 +140,12 @@ public class CatApiService : ICatApiService
         }
     }
 
-    public async Task<string?> RemoveFavoriteByImageIdAsync(string imageId)
+    public async Task<string?> RemoveFavoriteByImageIdAsync(string imageId, string? subId = null)
     {
         try
         {
-            var favorites = await GetFavoritesAsync();
-            var target = favorites?.FirstOrDefault(x => x.Image_id == imageId);
+            var favorites = await GetFavoritesAsync(subId);
+            var target = favorites?.FirstOrDefault(x => x.Image_id == imageId || x.Image?.Id == imageId);
 
             if (target?.Id != null && int.TryParse(target.Id, out var favouriteId))
             {

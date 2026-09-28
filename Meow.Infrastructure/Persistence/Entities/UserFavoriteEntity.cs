@@ -8,6 +8,11 @@ public class UserFavoriteEntity
 {
     [PrimaryKey, AutoIncrement]
     public int LocalId { get; set; }
+
+    [Indexed]
+    public string? UserId { get; set; }
+
+    [Indexed]
     public string ImageId { get; set; } = string.Empty;
     public string? FavoriteId { get; set; }
     public string? ImageUrl { get; set; }
@@ -29,6 +34,8 @@ public class UserFavoriteEntity
     public FavoriteCatResponse ToFavoriteCatResponse() => new()
     {
         Id = FavoriteId,
+        Image_id = ImageId,
+        Sub_id = UserId,
         Image = new Cat
         {
             Id = ImageId,
@@ -38,25 +45,27 @@ public class UserFavoriteEntity
         Created_at = AddedAt.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
     };
 
-    public static UserFavoriteEntity FromCat(Cat cat) => new()
+    public static UserFavoriteEntity FromCat(Cat cat, string? userId = null) => new()
     {
         ImageId = cat.Id,
         ImageUrl = cat.Url,
         Breeds = cat.Breeds ?? new List<Breed>(),
         AddedAt = DateTime.UtcNow,
         IsSynced = false,
-        IsPendingDeletion = false
+        IsPendingDeletion = false,
+        UserId = userId
     };
 
-    public static UserFavoriteEntity FromFavoriteCatResponse(FavoriteCatResponse response) => new()
+    public static UserFavoriteEntity FromFavoriteCatResponse(FavoriteCatResponse response, string? userId = null) => new()
     {
         FavoriteId = response.Id,
-        ImageId = response.Image?.Id ?? string.Empty,
+        ImageId = response.Image?.Id ?? response.Image_id ?? string.Empty,
         ImageUrl = response.Image?.Url,
         Breeds = response.Image?.Breeds ?? new List<Breed>(),
         AddedAt = DateTime.TryParse(response.Created_at, out var date) ? date : DateTime.UtcNow,
         IsSynced = true,
         IsPendingDeletion = false,
-        LastSyncAttempt = DateTime.UtcNow
+        LastSyncAttempt = DateTime.UtcNow,
+        UserId = userId ?? response.Sub_id
     };
 }

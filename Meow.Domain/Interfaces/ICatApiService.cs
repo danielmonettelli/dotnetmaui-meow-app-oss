@@ -26,14 +26,14 @@ public interface ICatApiService
     Task<List<Cat>?> GetCatsByBreedAsync(string breedId);
 
     /// <summary>
-    /// Gets all favorite cats for the current user
+    /// Gets all favorite cats for the specified user or current installation
     /// </summary>
-    Task<List<FavoriteCatResponse>?> GetFavoritesAsync();
+    Task<List<FavoriteCatResponse>?> GetFavoritesAsync(string? subId = null);
 
     /// <summary>
-    /// Adds a cat to the user's favorites
+    /// Adds a cat to favorites for the specified user or current installation
     /// </summary>
-    Task<string?> AddFavoriteAsync(string imageId);
+    Task<string?> AddFavoriteAsync(string imageId, string? subId = null);
 
     /// <summary>
     /// Deletes a cat from favorites using the favorite ID
@@ -41,7 +41,7 @@ public interface ICatApiService
     Task<string?> DeleteFavoriteAsync(int favouriteId);
 
     /// <summary>
-    /// Removes a cat from favorites using the image ID
+    /// Removes a cat from favorites using the image ID and optional subId
     /// </summary>
-    Task<string?> RemoveFavoriteByImageIdAsync(string imageId);
+    Task<string?> RemoveFavoriteByImageIdAsync(string imageId, string? subId = null);
 }

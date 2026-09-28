@@ -158,13 +158,38 @@ public class FavoriteCatResponseTests
     [Fact]
     public void FavoriteCatResponse_ShouldDeserializeFromJson()
     {
-        var json = """{"id":"123","user_id":"u1","image_id":"cat1","image":{"id":"cat1","url":"https://example.com/cat.jpg","width":100,"height":100}}""";
+        var json = """{"id":"123","user_id":"u1","image_id":"cat1","sub_id":"user_test","image":{"id":"cat1","url":"https://example.com/cat.jpg","width":100,"height":100}}""";
         var response = JsonSerializer.Deserialize<FavoriteCatResponse>(json);
 
         response.Should().NotBeNull();
         response!.Id.Should().Be("123");
+        response.Sub_id.Should().Be("user_test");
         response.Image.Should().NotBeNull();
         response.Image!.Id.Should().Be("cat1");
+    }
+
+    [Fact]
+    public void FavoriteCatResponse_WhenIdIsNumeric_ShouldDeserializeFromJson()
+    {
+        var json = """{"id":232442470,"user_id":1001,"image_id":"cat1","sub_id":9999,"image":{"id":"cat1","url":"https://example.com/cat.jpg","width":100,"height":100}}""";
+        var response = JsonSerializer.Deserialize<FavoriteCatResponse>(json);
+
+        response.Should().NotBeNull();
+        response!.Id.Should().Be("232442470");
+        response.User_id.Should().Be("1001");
+        response.Sub_id.Should().Be("9999");
+    }
+
+    [Fact]
+    public void FavoriteCatResponse_WhenFieldsAreNull_ShouldDeserializeCorrectly()
+    {
+        var json = """{"id":null,"user_id":null,"image_id":null,"sub_id":null}""";
+        var response = JsonSerializer.Deserialize<FavoriteCatResponse>(json);
+
+        response.Should().NotBeNull();
+        response!.Id.Should().BeNull();
+        response.User_id.Should().BeNull();
+        response.Sub_id.Should().BeNull();
     }
 }
 
@@ -181,10 +206,31 @@ public class FavoriteCatRequestTests
     }
 
     [Fact]
+    public void FavoriteCatRequest_WhenSubIdProvided_ShouldSerializeSubId()
+    {
+        var request = new FavoriteCatRequest { Image_id = "cat1", Sub_id = "user_123" };
+        var json = JsonSerializer.Serialize(request);
+
+        json.Should().Contain("\"image_id\":\"cat1\"");
+        json.Should().Contain("\"sub_id\":\"user_123\"");
+    }
+
+    [Fact]
+    public void FavoriteCatRequest_WhenSubIdNull_ShouldOmitSubId()
+    {
+        var request = new FavoriteCatRequest { Image_id = "cat1", Sub_id = null };
+        var json = JsonSerializer.Serialize(request);
+
+        json.Should().Contain("\"image_id\":\"cat1\"");
+        json.Should().NotContain("\"sub_id\"");
+    }
+
+    [Fact]
     public void FavoriteCatRequest_DefaultValue_ShouldBeEmpty()
     {
         var request = new FavoriteCatRequest();
         request.Image_id.Should().BeEmpty();
+        request.Sub_id.Should().BeNull();
     }
 }
 
